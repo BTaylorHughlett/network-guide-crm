@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Network Guide — AI-assisted networking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Exo+2:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="brand"><span class="brand__sub" aria-hidden="true"></span><span class="brand__text"><span class="brand__node">Node</span><span class="brand__logic">Logic</span></span></div>
+        <nav class="nav" aria-label="Primary">
+          <a href="./index.html" aria-current="page">Planner</a>
+          <a href="./contacts.html">Contacts CRM</a>
+          <a href="./networking-sites.html">Networking sites</a>
+          <a href="./contacts.html" onclick="sessionStorage.setItem('ngc_open_settings', '1')">Settings</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="hero__eyebrow">Let's build your networking rhythm</p>
+        <div class="page-title-row">
+          <h1>Build your networking plan for the next 4 weeks</h1>
+          <span id="pageStatusDot" class="page-status-dot is-not-started" aria-hidden="true"></span>
+        </div>
+        <p class="hero__why">
+          Networking becomes effortless when you know exactly who to reach out to and why.
+        </p>
+        <p>
+          Share a snapshot of your background and priorities. You will get three concrete actions you can run
+          this month.
+        </p>
+        <div class="hero-flow" aria-label="Planner flow overview">
+          <span>Profile</span>
+          <span class="hero-flow__arrow" aria-hidden="true">&gt;</span>
+          <span>Actions</span>
+          <span class="hero-flow__arrow" aria-hidden="true">&gt;</span>
+          <span>CRM</span>
+          <span class="hero-flow__arrow" aria-hidden="true">&gt;</span>
+          <span>Momentum</span>
+        </div>
+      </section>
+
+      <section class="card planner-preview" aria-labelledby="previewTitle">
+        <h2 id="previewTitle">What you will get</h2>
+        <div class="planner-preview__grid">
+          <article class="planner-preview__card">
+            <h3>Your 3 actions for the next 4 weeks</h3>
+            <p>Three practical moves matched to your role, strengths, and current goal.</p>
+          </article>
+          <article class="planner-preview__card">
+            <h3>Your networking rhythm</h3>
+            <p>A weekly structure so outreach and follow-up become consistent, not random.</p>
+          </article>
+          <article class="planner-preview__card">
+            <h3>Your CRM prioritization snapshot</h3>
+            <p>A clearer picture of who to contact first and where momentum is strongest.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card smart-progress" id="plannerProgressSection" aria-labelledby="plannerProgressTitle">
+        <div class="smart-progress__head">
+          <h2 id="plannerProgressTitle">Progress snapshot</h2>
+          <p class="hint" id="plannerProgressSummary">Complete Planner once, then every page becomes personalized.</p>
+        </div>
+        <div class="smart-progress__grid">
+          <article class="smart-progress__card">
+            <p class="smart-progress__label">Planner</p>
+            <div class="smart-progress__ring-wrap">
+              <div class="smart-progress__ring" id="plannerProgressRing" aria-hidden="true"></div>
+              <p class="smart-progress__value" id="plannerProgressValue">0%</p>
+            </div>
+            <div class="smart-progress__bar"><span id="plannerProgressBar"></span></div>
+          </article>
+          <article class="smart-progress__card">
+            <p class="smart-progress__label">CRM</p>
+            <div class="smart-progress__ring-wrap">
+              <div class="smart-progress__ring" id="plannerContactsRing" aria-hidden="true"></div>
+              <p class="smart-progress__value" id="plannerContactsValue">0 contacts</p>
+            </div>
+            <div class="smart-progress__bar"><span id="plannerContactsBar"></span></div>
+          </article>
+          <article class="smart-progress__card">
+            <p class="smart-progress__label">Playbook</p>
+            <div class="smart-progress__ring-wrap">
+              <div class="smart-progress__ring" id="plannerPlaybookRing" aria-hidden="true"></div>
+              <p class="smart-progress__value" id="plannerPlaybookValue">Locked</p>
+            </div>
+            <div class="smart-progress__bar"><span id="plannerPlaybookBar"></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card onboarding-card" id="onboardingSection" aria-labelledby="onboardingTitle">
+        <h2 id="onboardingTitle">Guided onboarding flow</h2>
+        <ol class="onboarding-list" id="onboardingList">
+          <li class="onboarding-list__item"><span class="onboarding-list__dot"></span><div><strong>Step 1: Fill Planner</strong><p>Add role, strengths, and your 4-week goal.</p></div></li>
+          <li class="onboarding-list__item"><span class="onboarding-list__dot"></span><div><strong>Step 2: Add 3 contacts</strong><p>Start with warm or high-context people first.</p></div></li>
+          <li class="onboarding-list__item"><span class="onboarding-list__dot"></span><div><strong>Step 3: Generate your first 3 actions</strong><p>Turn the plan into this week’s outreach moves.</p></div></li>
+          <li class="onboarding-list__item"><span class="onboarding-list__dot"></span><div><strong>Step 4: Open the personalized Playbook</strong><p>Use Rhythm Coach and momentum tools to stay consistent.</p></div></li>
+        </ol>
+      </section>
+
+      <div id="bannerHost"></div>
+
+      <section class="card" aria-labelledby="plannerTitle">
+        <h2 id="plannerTitle" class="sr-only">Networking planner inputs</h2>
+        <form id="plannerForm" novalidate>
+          <div class="field">
+            <label for="role">1. Role and/or background</label>
+            <input
+              id="role"
+              name="role"
+              type="text"
+              autocomplete="organization-title"
+              placeholder="Example: Product manager at a mid-size SaaS company; former consultant; focused on B2B workflows."
+              maxlength="180"
+              required
+            />
+            <div class="hint hint-row">
+              <span>Short paragraph is perfect. This anchors tone and credibility.</span>
+              <span id="roleCount">0/180</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="skills">2. Skills, strengths, and experience (comma-separated)</label>
+            <textarea
+              id="skills"
+              name="skills"
+              placeholder="Stakeholder interviews, SQL, storytelling, facilitation, GTM launches"
+              rows="3"
+              maxlength="350"
+              required
+            ></textarea>
+            <div class="hint hint-row">
+              <span>Separate items with commas. These become proof points in your outreach.</span>
+              <span id="skillsCount">0/350</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="goal">3. Goal for the next 4 weeks (or area to improve)</label>
+            <textarea
+              id="goal"
+              name="goal"
+              placeholder="Example: Build 6 conversations with senior PMs in fintech; improve follow-up discipline after events."
+              maxlength="350"
+              required
+            ></textarea>
+            <div class="hint hint-row">
+              <span>Concrete and measurable goals improve targeting and follow-through.</span>
+              <span id="goalCount">0/350</span>
+            </div>
+          </div>
+
+          <details class="disclosure">
+            <summary>What does the CRM do?</summary>
+            <ul class="disclosure-list">
+              <li>Tracks who you've met.</li>
+              <li>Suggests who to follow up with.</li>
+              <li>Surfaces warm connections.</li>
+              <li>Helps you build momentum over time.</li>
+            </ul>
+          </details>
+
+          <details class="disclosure">
+            <summary>Using real AI (optional)</summary>
+            <p style="margin: 0.5rem 0 0">
+              Open this site through the included local server (<code>node server.mjs</code>) and set
+              <code>OPENAI_API_KEY</code> in your environment. The planner will call OpenAI when available; otherwise
+              it uses an on-device guided template that still adapts to your inputs.
+            </p>
+          </details>
+
+          <section class="rhythm-timeline" aria-labelledby="timelineTitle">
+            <h3 id="timelineTitle">4-week rhythm</h3>
+            <div class="rhythm-timeline__bar" role="list">
+              <div class="rhythm-timeline__step" role="listitem">
+                <strong>Week 1</strong>
+                <span>Sharpen profile + outreach message</span>
+              </div>
+              <div class="rhythm-timeline__step" role="listitem">
+                <strong>Week 2</strong>
+                <span>Start conversations with priority contacts</span>
+              </div>
+              <div class="rhythm-timeline__step" role="listitem">
+                <strong>Week 3</strong>
+                <span>Follow up and share value consistently</span>
+              </div>
+              <div class="rhythm-timeline__step" role="listitem">
+                <strong>Week 4</strong>
+                <span>Review momentum and plan next cycle</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="row-actions">
+            <button type="submit" class="primary" id="generateBtn"><span class="btn-main"><span class="btn-icon" aria-hidden="true">✦</span> Generate 3-step plan</span><span class="btn-sub">(AI assist)</span></button>
+            <button type="button" id="saveDraftBtn">Save &amp; continue later</button>
+            <button type="button" id="exportPlanBtn">Export plan</button>
+            <button type="button" id="clearBtn">Clear form</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card results" id="results" hidden>
+        <h2>Your recommended actions</h2>
+        <p class="hint" id="resultsMeta"></p>
+        <div class="plan-grid" id="planGrid" role="list"></div>
+      </section>
+
+      <section class="card why-works" aria-labelledby="whyWorksTitle">
+        <h2 id="whyWorksTitle">Why this works</h2>
+        <ul>
+          <li>People respond to clarity.</li>
+          <li>Consistency builds trust.</li>
+          <li>Small actions compound.</li>
+          <li>Networking is a long-term asset.</li>
+        </ul>
+      </section>
+
+      <dialog class="modal" id="authDialog" aria-labelledby="authTitle">
+        <form id="authForm" novalidate>
+          <div class="modal__head">
+            <h2 id="authTitle" style="margin: 0; font-size: 1.1rem">Save your progress</h2>
+            <button type="button" id="authCloseBtn">Close</button>
+          </div>
+          <div class="modal__body">
+            <p class="hint" style="margin-top: 0">Log in or create an account to save and continue later.</p>
+            <div class="auth-switch" role="tablist" aria-label="Authentication mode">
+              <button type="button" class="auth-switch__btn is-active" id="authModeLogin" data-mode="login">Log in</button>
+              <button type="button" class="auth-switch__btn" id="authModeCreate" data-mode="create">Create account</button>
+            </div>
+            <div class="field" id="authNameField" hidden>
+              <label for="authName">Name</label>
+              <input id="authName" type="text" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="authEmail">Email</label>
+              <input id="authEmail" type="email" autocomplete="email" required />
+            </div>
+            <div class="field" style="margin-bottom: 0">
+              <label for="authPassword">Password</label>
+              <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required />
+              <p class="hint" id="authPasswordHint" hidden>Use at least 8 characters, including letters, numbers, and symbols.</p>
+            </div>
+          </div>
+          <div class="modal__foot">
+            <button type="button" id="authCancelBtn">Cancel</button>
+            <button type="submit" class="primary" id="authSubmitBtn">Log in &amp; save</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+
+    <script type="module" src="./js/home.js"></script>
+    <aside class="next-panel" id="nextPanel" aria-labelledby="nextPanelTitle">
+      <p class="next-panel__eyebrow">Workflow guide</p>
+      <h2 id="nextPanelTitle">What's next?</h2>
+      <ul class="next-panel__list" id="nextPanelList">
+        <li>Finish Planner to unlock personalized recommendations.</li>
+      </ul>
+    </aside>
+  </body>
+</html>

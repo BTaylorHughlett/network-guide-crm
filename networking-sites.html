@@ -1,0 +1,982 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Networking playbook & sites — Network Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Exo+2:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="page-sites">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="brand"><span class="brand__sub" aria-hidden="true"></span><span class="brand__text"><span class="brand__node">Node</span><span class="brand__logic">Logic</span></span></div>
+        <nav class="nav" aria-label="Primary">
+          <a href="./index.html">Planner</a>
+          <a href="./contacts.html">Contacts CRM</a>
+          <a href="./networking-sites.html" aria-current="page">Networking sites</a>
+          <a href="./contacts.html" onclick="sessionStorage.setItem('ngc_open_settings', '1')">Settings</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="sites-toolkit-bar" role="navigation" aria-label="Your networking toolkit">
+      <div class="sites-toolkit-bar__inner">
+        <span class="sites-toolkit-bar__title">Your Networking Toolkit</span>
+        <a href="#compare-grid">Quick compare</a>
+        <a href="#rhythm-coach">Rhythm coach</a>
+        <a href="#outreach-templates">Outreach templates</a>
+        <a href="#event-followup">Event follow-up scripts</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#momentum-score">Momentum score</a>
+      </div>
+    </div>
+
+    <div class="sites-page">
+      <aside class="sites-sidebar" aria-label="Toolkit shortcuts">
+        <div class="sites-sidebar__sticky">
+          <p class="sites-sidebar__head">Your Networking Toolkit</p>
+          <nav class="sites-sidebar__nav">
+            <a href="#compare-grid">Quick compare</a>
+            <a href="#top-sites">Top 9 sites</a>
+            <a href="#workflow">Weekly workflow</a>
+            <a href="#rhythm-coach">Rhythm coach</a>
+            <a href="#starter-packs">Starter packs</a>
+            <a href="#signals">Signals to send</a>
+            <a href="#outreach-templates">Outreach templates</a>
+            <a href="#event-followup">Event follow-up</a>
+            <a href="#event-generator">Follow-up generator</a>
+            <a href="#simulator">Simulator</a>
+            <a href="#momentum-score">Momentum score</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="sites-main">
+        <section class="hero" id="top">
+          <span class="hero__eyebrow">Networking Playbook</span>
+          <div class="page-title-row">
+            <h1>Your networking playbook</h1>
+            <span id="pageStatusDot" class="page-status-dot is-not-started" aria-hidden="true"></span>
+          </div>
+          <p class="hero__why">Be the person worth mentioning.</p>
+          <p>
+            Several platforms, one rhythm: be <span class="hero-term" data-tooltip="Others can find and see that you're active, helpful, and serious about your field so they know you're someone worth paying attention to.">discoverable</span>,
+            be <span class="hero-term" data-tooltip="Your track record of sharing knowledge, helping others, and showing up consistently builds your reputation as someone people can rely on.">credible</span>,
+            show up where your people already gather, then
+            <span class="hero-term" data-tooltip="Follow through on every intro, conversation, and promise so nothing falls through the cracks.">close&nbsp;loops</span> like a pro.
+          </p>
+          <div class="path-selector" aria-label="Choose your networking path">
+            <p class="path-selector__label">Choose your path:</p>
+            <div class="path-selector__buttons">
+              <button class="path-selector__btn" data-path="all" aria-pressed="true" data-description="See the full range of networking options">All platforms</button>
+              <button class="path-selector__btn" data-path="introvert" data-description="Async-first, thoughtful writing, low-pressure">The Introvert</button>
+              <button class="path-selector__btn" data-path="extrovert" data-description="Public voice, in-person, visible networking">The Extrovert</button>
+              <button class="path-selector__btn" data-path="builder" data-description="Showcase work, build audience, prove expertise">The Builder</button>
+            </div>
+          </div>
+          <div class="hero-flow" aria-label="Networking rhythm">
+            <span>Build presence</span>
+            <span class="hero-flow__arrow" aria-hidden="true">→</span>
+            <span>Send signals</span>
+            <span class="hero-flow__arrow" aria-hidden="true">→</span>
+            <span>Open doors</span>
+            <span class="hero-flow__arrow" aria-hidden="true">→</span>
+            <span>Close loops</span>
+          </div>
+          <div class="sites-cta-row" aria-label="Primary actions">
+            <a class="button primary sites-cta-btn" href="./index.html#plannerForm">Go to Planner</a>
+            <a class="button primary sites-cta-btn" href="#momentum-score">Score Your Momentum</a>
+          </div>
+        </section>
+
+        <div class="success-story" id="recentWinBanner" role="status" aria-live="polite">
+          <button type="button" class="success-story__dismiss" id="recentWinDismissBtn" aria-label="Dismiss recent win banner">Dismiss</button>
+          <div class="success-story__content">
+            <span class="success-story__icon" id="recentWinIcon" aria-hidden="true">🏆</span>
+            <div class="success-story__text">
+              <p class="success-story__label">Recent Win</p>
+              <p class="success-story__message" id="recentWinMessage">Boom! You've started a new connection.</p>
+              <p class="success-story__xp" id="recentWinXp">+15 Momentum</p>
+              <div class="success-story__progress" aria-label="Momentum progress from wins">
+                <span id="recentWinProgressBar"></span>
+              </div>
+              <p class="success-story__encouragement" id="recentWinEncouragement">You're in the top 10% of networkers this week!</p>
+            </div>
+            <div class="success-story__actions">
+              <button type="button" class="success-story__share" id="recentWinShareBtn">Share To LinkedIn</button>
+              <a class="success-story__cta" id="recentWinCta" href="#momentum-score" hidden>Your Next Win Is Just One Message Away</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="card smart-progress" id="sitesProgressSection" aria-labelledby="sitesProgressTitle">
+          <div class="smart-progress__head">
+            <h2 id="sitesProgressTitle">Personalization status</h2>
+            <p class="hint" id="sitesProgressSummary">Complete Planner, add contacts, and score momentum to unlock the full system.</p>
+          </div>
+          <div class="smart-progress__grid">
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">Planner</p>
+              <p class="smart-progress__value" id="sitesPlannerValue">0%</p>
+              <div class="smart-progress__bar"><span id="sitesPlannerBar"></span></div>
+            </article>
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">CRM</p>
+              <p class="smart-progress__value" id="sitesContactsValue">0 contacts</p>
+              <div class="smart-progress__bar"><span id="sitesContactsBar"></span></div>
+            </article>
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">Momentum history</p>
+              <p class="smart-progress__value" id="sitesMomentumValue">0 entries</p>
+              <div class="smart-progress__bar"><span id="sitesMomentumBar"></span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="card" id="compare-grid" aria-labelledby="compareGridTitle">
+          <div class="sites-section-head">
+            <h2 id="compareGridTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">⚡</span>Platform quick-compare</h2>
+            <p class="section-why">A mental model before you dive in — match your goal to the right two or three platforms first.</p>
+          </div>
+          <div class="platform-compare-wrap">
+            <table class="platform-compare">
+              <thead>
+                <tr>
+                  <th>Platform</th>
+                  <th>Best for</th>
+                  <th>Time / week</th>
+                  <th>Networking style</th>
+                  <th>Effort</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-platform="linkedin">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>LinkedIn</strong></span></td>
+                  <td data-label="Best for">Job seekers, recruiters, thought leaders</td>
+                  <td data-label="Time / week">2–3 hrs</td>
+                  <td data-label="Style"><span class="compare-badge">Public</span> <span class="compare-badge">Async</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="wellfound">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=wellfound.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Wellfound</strong></span></td>
+                  <td data-label="Best for">Founders, startup job seekers</td>
+                  <td data-label="Time / week">30–60 min</td>
+                  <td data-label="Style"><span class="compare-badge">Intent-based</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="meetup">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=meetup.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Meetup</strong></span></td>
+                  <td data-label="Best for">Niche communities, local networking</td>
+                  <td data-label="Time / week">2–4 hrs / mo</td>
+                  <td data-label="Style"><span class="compare-badge">In-person</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="slack">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=slack.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Slack / Discord</strong></span></td>
+                  <td data-label="Best for">Peer communities, daily questions</td>
+                  <td data-label="Time / week">15 min / day</td>
+                  <td data-label="Style"><span class="compare-badge">Private async</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="x">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>X</strong></span></td>
+                  <td data-label="Best for">Public voice, thought leadership</td>
+                  <td data-label="Time / week">20–30 min / day</td>
+                  <td data-label="Style"><span class="compare-badge">Public broadcast</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="substack">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=substack.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Substack</strong></span></td>
+                  <td data-label="Best for">Owned audience, long-form writing</td>
+                  <td data-label="Time / week">3–4 hrs / mo</td>
+                  <td data-label="Style"><span class="compare-badge">Owned</span> <span class="compare-badge">Long-form</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="upwork">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=upwork.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Upwork</strong></span></td>
+                  <td data-label="Best for">Freelancers, paid proof of work</td>
+                  <td data-label="Time / week">1–2 hrs</td>
+                  <td data-label="Style"><span class="compare-badge">Marketplace</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="eventbrite">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=eventbrite.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Eventbrite</strong></span></td>
+                  <td data-label="Best for">Event discovery and hosting</td>
+                  <td data-label="Time / week">30 min</td>
+                  <td data-label="Style"><span class="compare-badge">In-person</span> <span class="compare-badge">Discovery</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+                <tr data-platform="medium">
+                  <td data-label="Platform"><span class="compare-platform"><img src="https://www.google.com/s2/favicons?domain=medium.com&amp;sz=64" alt="" width="18" height="18" loading="lazy" /><strong>Medium</strong></span></td>
+                  <td data-label="Best for">Writing distribution, tech niches</td>
+                  <td data-label="Time / week">2–3 hrs / mo</td>
+                  <td data-label="Style"><span class="compare-badge">Public writing</span></td>
+                  <td><span class="effort-dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" id="top-sites" aria-labelledby="sitesListTitle">
+          <div class="sites-section-head">
+            <h2 id="sitesListTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">🌐</span>Top professional networking sites</h2>
+            <p class="section-why">Each platform has a distinct job in your stack — pick 2–3 that match how you like to show up.</p>
+          </div>
+          <ol class="site-list site-list--cards">
+            <li class="site-card site-card--identity" data-category="identity" data-platform="linkedin">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=linkedin.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">LinkedIn</h3>
+                  <p class="site-card__value">
+                    <strong>Your public professional identity and recruiter magnet.</strong>
+                  </p>
+                  <div class="site-card__badges" aria-label="Best use cases">
+                    <span class="use-badge">Best for job seekers</span>
+                    <span class="use-badge">Best for hiring visibility</span>
+                    <span class="use-badge">Best for thought leadership</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Optimize</strong> your headline for the exact keywords recruiters and peers search.</li>
+                      <li><strong>DM thoughtfully</strong> after profile views—reference a specific post or shared context.</li>
+                      <li><strong>Join</strong> three niche groups and post weekly with one lesson or question, not generic motivation.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer">Sign in to LinkedIn</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--social" data-category="social" data-platform="wellfound">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=wellfound.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Wellfound (formerly AngelList Talent)</h3>
+                  <p class="site-card__value">
+                    <strong>Where startup hiring intent is explicit—so conversations start closer to a yes.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for founders</span>
+                    <span class="use-badge">Best for startup job seekers</span>
+                    <span class="use-badge">Best for early-stage hiring</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Keep</strong> a tight narrative: stage, stack, traction—remove vague adjectives.</li>
+                      <li><strong>Refresh signals weekly</strong> (projects, availability) so you appear active, not stale.</li>
+                      <li><strong>Ask</strong> for <span data-tooltip="An introduction made by a mutual connection who provides context and vouches for the fit">warm intros</span> for specific roles, not "anything in startups."</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://wellfound.com/login" target="_blank" rel="noopener noreferrer">Sign in to Wellfound</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--events" data-category="events" data-platform="meetup">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=meetup.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Meetup</h3>
+                  <p class="site-card__value">
+                    <strong>Niche communities meeting in person; warm conversations at low friction.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for niche communities</span>
+                    <span class="use-badge">Best for local in-person networking</span>
+                    <span class="use-badge">Best for skill-building peer groups</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>RSVP early and attend consistently;</strong> regularity makes you trustworthy.</li>
+                      <li><strong>Follow up</strong> within 24 hours: "Appreciated your point about X; let's stay in touch."</li>
+                      <li><strong>Volunteer</strong> to speak or lead a session; visible expertise builds fast credibility.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://www.meetup.com/" target="_blank" rel="noopener noreferrer">Go to Meetup</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--community" data-category="community" data-platform="slack">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=slack.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Slack (& Discord communities)</h3>
+                  <p class="site-card__value">
+                    <strong>Async depth: low-pressure questions, niche expertise, and slow-burn relationships.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for niche communities</span>
+                    <span class="use-badge">Best for daily asynchronous chat</span>
+                    <span class="use-badge">Best for questions and advice</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Join</strong> 2-3 communities; be active in one. Scattered presence reads as noise.</li>
+                      <li><strong>Answer questions</strong> generously, ask specific ones. Build reputation for taste and knowledge.</li>
+                      <li><strong>DM thoughtfully:</strong> reference something they wrote, offer help, then propose a call if momentum builds.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://slack.com/" target="_blank" rel="noopener noreferrer">Go to Slack</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--social" data-category="social" data-platform="x">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">X (formerly Twitter)</h3>
+                  <p class="site-card__value">
+                    <strong>Public signal and distribution; where your thoughts can reach the right people at scale.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for public voice</span>
+                    <span class="use-badge">Best for thought leadership</span>
+                    <span class="use-badge">Best for reaching influencers</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Post</strong> one original insight weekly: a lesson, observation, or opinion. Skip generic retweets.</li>
+                      <li><strong>Reply thoughtfully</strong> to 3-5 accounts in your niche weekly; build relationship before asking.</li>
+                      <li><strong>Use</strong> a consistent newsletter or link in bio; give people a reason to stay after the tweet.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://twitter.com/i/flow/login" target="_blank" rel="noopener noreferrer">Sign in to X</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--portfolio" data-category="portfolio" data-platform="substack">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=substack.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Substack (or blog)</h3>
+                  <p class="site-card__value">
+                    <strong>Your owned audience and deep ideas; a space to build trust and showcase thinking.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for building owned audience</span>
+                    <span class="use-badge">Best for longer-form writing</span>
+                    <span class="use-badge">Best for email followup</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Commit</strong> to two pieces monthly; consistency builds subscribers better than one epic post.</li>
+                      <li><strong>Lead with insight,</strong> not self-promotion; subscribers come for your ideas, not your resume.</li>
+                      <li><strong>Use insights from chats:</strong> "A founder recently asked me about X" makes content relatable.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://substack.com/" target="_blank" rel="noopener noreferrer">Go to Substack</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--marketplace" data-category="marketplace" data-platform="upwork">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=upwork.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Upwork</h3>
+                  <p class="site-card__value">
+                    <strong>Paid work and proof; first freelance opportunities and reputation building.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for freelancers</span>
+                    <span class="use-badge">Best for paid proof of work</span>
+                    <span class="use-badge">Best for side projects</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Write proposals that diagnose:</strong> show you understand the problem before pitching the solution.</li>
+                      <li><strong>Refresh</strong> your profile weekly: update availability, rates, and featured projects.</li>
+                      <li><strong>Ask</strong> repeat clients to write reviews; 5-star feedback compounds over time and beats portfolio links.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer">Go to Upwork</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--events" data-category="events" data-platform="eventbrite">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=eventbrite.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Eventbrite</h3>
+                  <p class="site-card__value">
+                    <strong>Discover and host events; see who else is interested in the problem you care about.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for finding events</span>
+                    <span class="use-badge">Best for hosting events</span>
+                    <span class="use-badge">Best for large gatherings</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Filter</strong> by your niche topics and mark your calendar; show up in person and follow up.</li>
+                      <li><strong>Create</strong> a 30-second opener if you host so you can give a personal welcome to attendees.</li>
+                      <li><strong>Add</strong> a CRM or email signup to your events; attendee lists are gold for outreach.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://www.eventbrite.com/" target="_blank" rel="noopener noreferrer">Go to Eventbrite</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="site-card site-card--portfolio" data-category="portfolio" data-platform="medium">
+              <div class="site-card__row">
+                <img
+                  class="site-card__icon"
+                  src="https://www.google.com/s2/favicons?domain=medium.com&amp;sz=64"
+                  width="40"
+                  height="40"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="site-card__body">
+                  <h3 class="site-card__title">Medium (or dev.to)</h3>
+                  <p class="site-card__value">
+                    <strong>Published proof and built-in reach; your writing can find the right audience easily.</strong>
+                  </p>
+                  <div class="site-card__badges">
+                    <span class="use-badge">Best for writing distribution</span>
+                    <span class="use-badge">Best for long-form articles</span>
+                    <span class="use-badge">Best for reach in tech niches</span>
+                  </div>
+                  <details class="site-card__playbook">
+                    <summary>Top 3 moves on this platform</summary>
+                    <ol>
+                      <li><strong>Publish</strong> one article monthly; lean into what you know that others don't.</li>
+                      <li><strong>Use</strong> clear headlines that match how people search (SEO helps visibility).</li>
+                      <li><strong>Engage</strong> with comments; show up, answer questions, build a voice people recognize.</li>
+                    </ol>
+                  </details>
+                  <p class="site-card__links">
+                    <a href="https://medium.com/" target="_blank" rel="noopener noreferrer">Go to Medium</a>
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="card" id="workflow" aria-labelledby="workflowTitle">
+          <div class="sites-section-head">
+            <h2 id="workflowTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">📅</span>Weekly workflow: where to show up when</h2>
+            <p class="section-why">Presence is built through rhythm, not bursts — this cadence keeps you visible without burning out.</p>
+          </div>
+          <div class="workflow-cadence-legend" aria-hidden="true">
+            <div class="wcl-item">
+              <span class="wcl-freq">Daily</span>
+              <div class="wcl-bar-track"><div class="wcl-bar-fill" style="width:100%"></div></div>
+              <span class="wcl-ex">Slack · Discord</span>
+            </div>
+            <div class="wcl-item">
+              <span class="wcl-freq">3× / week</span>
+              <div class="wcl-bar-track"><div class="wcl-bar-fill" style="width:60%"></div></div>
+              <span class="wcl-ex">LinkedIn · X</span>
+            </div>
+            <div class="wcl-item">
+              <span class="wcl-freq">Weekly</span>
+              <div class="wcl-bar-track"><div class="wcl-bar-fill" style="width:40%"></div></div>
+              <span class="wcl-ex">Upwork</span>
+            </div>
+            <div class="wcl-item">
+              <span class="wcl-freq">2× / month</span>
+              <div class="wcl-bar-track"><div class="wcl-bar-fill" style="width:20%"></div></div>
+              <span class="wcl-ex">Substack · Medium</span>
+            </div>
+            <div class="wcl-item">
+              <span class="wcl-freq">Monthly</span>
+              <div class="wcl-bar-track"><div class="wcl-bar-fill" style="width:14%"></div></div>
+              <span class="wcl-ex">Events</span>
+            </div>
+          </div>
+          <div class="sites-workflow-grid">
+            <div class="sites-workflow-item" data-platform="linkedin" data-cadence-key="linkedin">
+              <h3>LinkedIn</h3>
+              <p class="frequency" data-frequency-text>3x weekly</p>
+              <p>Post or comment on industry threads. Share a lesson, question, or opinion.</p>
+              <p class="sites-workflow__hint">Signals hiring visibility and active thinking.</p>
+            </div>
+            <div class="sites-workflow-item" data-platform="slack" data-cadence-key="slack">
+              <h3>Slack or Discord</h3>
+              <p class="frequency" data-frequency-text>Daily, 15 min</p>
+              <p>Read two channels, answer one question thoughtfully, ask one smart question.</p>
+              <p class="sites-workflow__hint">You're most helpful now; build signal for future intros.</p>
+            </div>
+            <div class="sites-workflow-item" data-platform="meetup" data-cadence-key="events">
+              <h3>Meetup or Events</h3>
+              <p class="frequency" data-frequency-text>1x monthly</p>
+              <p>Attend one event, take notes, send three follow-ups before Sunday evening.</p>
+              <p class="sites-workflow__hint">Show up in person, then close loops fast.</p>
+            </div>
+            <div class="sites-workflow-item" data-platform="x" data-cadence-key="x">
+              <h3>X or public voice</h3>
+              <p class="frequency" data-frequency-text>2-3x weekly</p>
+              <p>One original thought, two thoughtful replies. Stay in motion without noise.</p>
+              <p class="sites-workflow__hint">Consistency and engagement reward momentum.</p>
+            </div>
+            <div class="sites-workflow-item" data-platform="substack" data-cadence-key="writing">
+              <h3>Substack or blog</h3>
+              <p class="frequency" data-frequency-text>2x monthly</p>
+              <p>Publish thoughtful longer pieces. Lead with insight, not self-promotion.</p>
+              <p class="sites-workflow__hint">Build owned audience and deep credibility.</p>
+            </div>
+            <div class="sites-workflow-item" data-platform="upwork" data-cadence-key="upwork">
+              <h3>Upwork or freelance</h3>
+              <p class="frequency" data-frequency-text>Weekly refresh</p>
+              <p>Update availability, respond to proposals, refresh featured project.</p>
+              <p class="sites-workflow__hint">Turn skills into paid proof and referral fuel.</p>
+            </div>
+          </div>
+          <p class="sites-workflow__note" id="workflowCrossNote">
+            <strong>X</strong> and <strong>Wellfound</strong> cut across stages: use X for public signal and Wellfound when startup intent is the game.
+          </p>
+        </section>
+
+        <section class="card" id="rhythm-coach" aria-labelledby="rhythmCoachTitle">
+          <div class="sites-section-head">
+            <h2 id="rhythmCoachTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">🧭</span>Networking Rhythm Coach</h2>
+            <p class="section-why">Answer four quick questions to get your weekly rhythm, top platforms, and trend guidance.</p>
+          </div>
+          <form class="coach-grid" id="rhythmCoachForm">
+            <div class="field">
+              <label for="coachGoal">What is your main networking goal right now?</label>
+              <select id="coachGoal">
+                <option value="job">Get interviews / role conversations</option>
+                <option value="startup">Meet founders / startup operators</option>
+                <option value="freelance">Find freelance or consulting work</option>
+                <option value="thought">Build public voice / thought leadership</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="coachTime">How much time can you realistically give networking each week?</label>
+              <select id="coachTime">
+                <option value="light">Under 2 hours</option>
+                <option value="medium">2-4 hours</option>
+                <option value="high">5+ hours</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="coachComfort">How comfortable are you with cold outreach right now?</label>
+              <select id="coachComfort">
+                <option value="low">Low - I prefer warm starts</option>
+                <option value="mid">Medium - I can do it with a script</option>
+                <option value="high">High - I can initiate without much friction</option>
+              </select>
+            </div>
+            <div class="field coach-check-field">
+              <label class="sites-momentum__check"><input type="checkbox" id="coachEvents" /> I prefer in-person or live community touchpoints.</label>
+            </div>
+            <div class="row-actions">
+              <button type="submit" class="primary">Build my rhythm</button>
+            </div>
+          </form>
+          <div class="coach-result" id="rhythmCoachResult" hidden>
+            <div class="coach-pill-row" id="coachPriorityPills"></div>
+            <ul class="action-list" id="coachWeeklyList"></ul>
+            <p class="hint" id="coachTrendNote"></p>
+          </div>
+        </section>
+
+        <section class="card" id="starter-packs" aria-labelledby="starterTitle">
+          <div class="sites-section-head">
+            <h2 id="starterTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">🎯</span>Starter packs by persona</h2>
+            <p class="section-why">What matters most depends on why you're networking — start with the platforms that match your mode, then add more after four weeks.</p>
+          </div>
+          <p class="sites-persona__intro">Pick a lane—then stack only what you will actually maintain for four weeks.</p>
+          <div id="starterPacksContent"></div>
+        </section>
+
+        <section class="card" id="signals" aria-labelledby="signalsTitle">
+          <div class="sites-section-head">
+            <h2 id="signalsTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">📡</span>Signals to send (visibility without noise)</h2>
+            <p class="section-why">Pick three signals and repeat them for a month — consistency beats variety every time.</p>
+          </div>
+          <ul class="sites-signals" id="signalsList">
+            <li><strong>LinkedIn:</strong> one post or comment thread weekly with a lesson or question.</li>
+            <li><strong>Events:</strong> at least one event monthly with a written follow-up plan.</li>
+            <li><strong>Slack / Discord:</strong> join two active communities and contribute weekly.</li>
+            <li><strong>X:</strong> five substantive replies weekly in your niche.</li>
+            <li><strong>Upwork:</strong> proposals that show diagnosis + plan; refresh availability weekly.</li>
+            <li><strong>Substack / blog:</strong> publish one thoughtful piece monthly to build <span data-tooltip="Subscribers you control directly — not dependent on any algorithm or platform change">owned audience</span>.</li>
+          </ul>
+        </section>
+
+        <section class="card" id="outreach-templates" aria-labelledby="templatesTitle">
+          <div class="sites-section-head">
+            <h2 id="templatesTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">✉️</span>Outreach templates</h2>
+            <p class="section-why"><strong>Personalize the first line every time</strong> — the structure does the heavy lifting; specificity does the converting.</p>
+          </div>
+          <div class="success-micro-grid" aria-label="Progress encouragement">
+            <article class="success-micro-card">
+              <p class="success-micro-card__label">Outreach streak</p>
+              <p class="success-micro-card__value" id="microOutreachStreak">0 days</p>
+            </article>
+            <article class="success-micro-card">
+              <p class="success-micro-card__label">Event consistency</p>
+              <p class="success-micro-card__value" id="microEventWeeks">0 weeks</p>
+            </article>
+            <article class="success-micro-card">
+              <p class="success-micro-card__label">Momentum trend</p>
+              <p class="success-micro-card__value" id="microMomentumTrend">No score yet</p>
+            </article>
+          </div>
+          <div class="sites-copy-grid">
+            <figure class="sites-copy speech-bubble">
+              <figcaption>Warm follow-up after a good chat</figcaption>
+              <pre>Hi [Name] — thanks again for [specific topic]. I'm following through on [commitment].
+If helpful, I can [small offer] by [date].
+Either way, I'll [next touchpoint] — open to [time option A] or [time option B].</pre>
+            </figure>
+            <figure class="sites-copy speech-bubble">
+              <figcaption><span data-tooltip="Both parties confirm they want the introduction before it's made — no awkward cold forwards">Double opt-in</span> intro request</figcaption>
+              <pre>Hi [Name] — I'm trying to connect with [target role] at [context] to [specific reason].
+Would you be comfortable making an intro if you think it's a fit?
+If yes, I can send a forwardable blurb.</pre>
+            </figure>
+            <figure class="sites-copy speech-bubble">
+              <figcaption>Cold DM after a genuine touchpoint</figcaption>
+              <pre>Hi [Name] — I appreciated your [post/talk/repo note] on [topic].
+I'm working on [goal] and would value a 15-min perspective if you're open.
+Either way, thanks for sharing your work publicly.</pre>
+            </figure>
+          </div>
+        </section>
+
+        <section class="card" id="event-followup" aria-labelledby="followupTitle">
+          <div class="sites-section-head">
+            <h2 id="followupTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">🤝</span>Event follow-up scripts</h2>
+            <p class="section-why">Speed and specificity are the variables — the faster and more personal the follow-up, the stronger the connection holds.</p>
+          </div>
+          <ul class="scripts-list">
+            <li class="script-item">
+              <span class="script-item__label">Same night · light touch</span>
+              <p class="script-item__body">"Great meeting you at [event] — loved your point about [X]. I'd enjoy staying in touch on [topic]."</p>
+            </li>
+            <li class="script-item">
+              <span class="script-item__label">Next day · value add</span>
+              <p class="script-item__body">"Following up from [event] — here's [link/resource] related to what we discussed. If you're open, could we do a 15-min call next week to compare notes on [Y]?"</p>
+            </li>
+            <li class="script-item">
+              <span class="script-item__label">Intro offer</span>
+              <p class="script-item__body">"If it's useful, I can introduce you to [person/org] working on [Z]. Want me to draft something forwardable?"</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="card" id="event-generator" aria-labelledby="eventGeneratorTitle">
+          <div class="sites-section-head">
+            <h2 id="eventGeneratorTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">📝</span>Event follow-up generator</h2>
+            <p class="section-why">Turn one event detail into a personalized follow-up and save it to CRM as a draft.</p>
+          </div>
+          <form class="coach-grid" id="eventGeneratorForm">
+            <div class="field">
+              <label for="eventNameInput">Event name</label>
+              <input id="eventNameInput" type="text" placeholder="Product Drinks NYC" />
+            </div>
+            <div class="field">
+              <label for="eventDetailInput">One memorable detail from the conversation</label>
+              <input id="eventDetailInput" type="text" placeholder="their point about onboarding metrics" />
+            </div>
+            <div class="row-actions">
+              <button type="submit" class="primary">Generate follow-up</button>
+              <button type="button" id="saveEventDraftBtn">Save to CRM pending drafts</button>
+            </div>
+          </form>
+          <pre class="generated-copy" id="eventGeneratorOutput">Generate an event follow-up draft here.</pre>
+        </section>
+
+        <section class="card" id="simulator" aria-labelledby="simulatorTitle">
+          <div class="sites-section-head">
+            <h2 id="simulatorTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">🎮</span>Networking simulator</h2>
+            <p class="section-why">Practice cold outreach, warm intros, or event follow-ups with instant feedback on clarity, specificity, and tone.</p>
+          </div>
+          <div class="coach-grid">
+            <div class="field">
+              <label for="simScenario">Scenario</label>
+              <select id="simScenario">
+                <option value="cold-dm">Cold DM</option>
+                <option value="warm-intro">Warm intro request</option>
+                <option value="event-followup">Event follow-up</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="simPersona">Persona</label>
+              <select id="simPersona">
+                <option value="job-seeker">Job seeker</option>
+                <option value="founder">Founder</option>
+                <option value="freelancer">Freelancer</option>
+                <option value="thought-leader">Thought leader</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="simMessage">Your draft</label>
+            <textarea id="simMessage" placeholder="Write the message you would actually send."></textarea>
+          </div>
+          <div class="row-actions">
+            <button type="button" id="simEvaluateBtn">Evaluate draft</button>
+          </div>
+          <div class="report-grid" id="simResult" hidden>
+            <article class="report-card">
+              <h3>Scores</h3>
+              <div class="streak-grid">
+                <div class="streak-pill"><strong id="simClarity">0</strong><span>Clarity</span></div>
+                <div class="streak-pill"><strong id="simSpecificity">0</strong><span>Specificity</span></div>
+                <div class="streak-pill"><strong id="simTone">0</strong><span>Tone</span></div>
+              </div>
+            </article>
+            <article class="report-card">
+              <h3>Feedback</h3>
+              <ul class="action-list" id="simFeedback"></ul>
+            </article>
+            <article class="report-card">
+              <h3>Improved version</h3>
+              <pre class="generated-copy" id="simImproved"></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="card sites-momentum" id="momentum-score" aria-labelledby="momentumTitle">
+          <div class="sites-section-head">
+            <h2 id="momentumTitle" class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">⚡</span>Networking momentum score</h2>
+            <p class="section-why">Honest answers beat aspirational ones — this score shows where you actually are, not where you wish you were.</p>
+          </div>
+          <p class="sites-momentum__intro">
+            Quick self-check: presence across platforms, rhythm, proof, and events.
+          </p>
+          <form class="sites-momentum__form" id="momentumForm">
+            <div class="field">
+              <label for="mPlatforms">How many of these platforms do you actively use (weekly meaningful use)?</label>
+              <select id="mPlatforms" name="platforms">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="mEngage">How often do you post, comment, ship public work, or send outreach?</label>
+              <select id="mEngage" name="engage">
+                <option value="rarely">Rarely</option>
+                <option value="monthly">Monthly</option>
+                <option value="weekly" selected>Weekly</option>
+                <option value="several">Several times a week</option>
+                <option value="daily">Most days</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="sites-momentum__check"><input type="checkbox" id="mPortfolio" name="portfolio" /> I have a public portfolio link (site or case studies).</label>
+            </div>
+            <div class="field">
+              <label class="sites-momentum__check"><input type="checkbox" id="mEvents" name="events" /> I attend at least one professional event monthly.</label>
+            </div>
+            <div class="field">
+              <label class="sites-momentum__check"><input type="checkbox" id="mCrm" name="crm" /> I track follow-ups in a CRM or calendar system.</label>
+            </div>
+            <div class="row-actions">
+              <button type="submit" class="primary" id="momentumBtn">Calculate score</button>
+            </div>
+          </form>
+          <div class="sites-momentum__result" id="momentumResult" hidden>
+            <div class="momentum-tier-bar"><div class="momentum-tier-bar__fill" id="momentumBarFill"></div></div>
+            <p class="sites-momentum__score" id="momentumScoreLine"></p>
+            <div class="sites-momentum__next" id="momentumNext"></div>
+          </div>
+        </section>
+
+        <div id="sitesSettingsBackdrop" hidden></div>
+        <section class="card sites-settings-panel" id="sitesSettings" hidden aria-label="Networking sites settings">
+          <div class="sites-settings-panel__head">
+            <h2 class="sites-section-title" style="margin-bottom: 0">Settings</h2>
+            <button type="button" id="sitesSettingsCloseBtn">Close</button>
+          </div>
+
+          <div class="settings-grid">
+            <article class="settings-block">
+              <h3>1. Platform Preferences</h3>
+              <label class="settings-check"><input type="checkbox" id="sp_linkedin" checked /> LinkedIn</label>
+              <label class="settings-check"><input type="checkbox" id="sp_slack" checked /> Slack/Discord</label>
+              <label class="settings-check"><input type="checkbox" id="sp_meetup" checked /> Meetup</label>
+              <label class="settings-check"><input type="checkbox" id="sp_x" checked /> X</label>
+              <label class="settings-check"><input type="checkbox" id="sp_substack" checked /> Substack</label>
+              <label class="settings-check"><input type="checkbox" id="sp_upwork" checked /> Upwork</label>
+              <label class="settings-check"><input type="checkbox" id="sp_medium" checked /> Medium</label>
+              <label class="settings-check"><input type="checkbox" id="sp_eventbrite" checked /> Eventbrite</label>
+              <label class="settings-check"><input type="checkbox" id="sp_wellfound" checked /> Wellfound</label>
+            </article>
+
+            <article class="settings-block">
+              <h3>2. Weekly Workflow Frequency Controls</h3>
+              <div class="field">
+                <label for="swf_linkedin">LinkedIn posting frequency</label>
+                <input id="swf_linkedin" type="text" value="3x weekly" />
+              </div>
+              <div class="field">
+                <label for="swf_slack">Slack/Discord engagement frequency</label>
+                <input id="swf_slack" type="text" value="Daily, 15 min" />
+              </div>
+              <div class="field">
+                <label for="swf_events">Event attendance frequency</label>
+                <input id="swf_events" type="text" value="1x monthly" />
+              </div>
+              <div class="field">
+                <label for="swf_writing">Writing cadence (Substack/Medium)</label>
+                <input id="swf_writing" type="text" value="2x monthly" />
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="swf_upwork">Upwork refresh frequency</label>
+                <input id="swf_upwork" type="text" value="Weekly refresh" />
+              </div>
+            </article>
+
+            <article class="settings-block">
+              <h3>3. Persona / Starter Pack Selection</h3>
+              <div class="field" style="margin-bottom: 0">
+                <label for="sp_persona">Persona selection</label>
+                <select id="sp_persona">
+                  <option value="job-seeker">Job seeker</option>
+                  <option value="founder">Founder</option>
+                  <option value="freelancer">Freelancer</option>
+                  <option value="career-switcher">Career switcher</option>
+                  <option value="community-builder">Community builder</option>
+                  <option value="thought-leader">Thought leader</option>
+                </select>
+              </div>
+            </article>
+
+            <article class="settings-block">
+              <h3>4. Momentum Score Preferences</h3>
+              <div class="field">
+                <label for="sm_weightVisibility">Visibility weight: <span id="sm_weightVisibilityVal">35</span></label>
+                <input id="sm_weightVisibility" type="range" min="0" max="100" value="35" />
+              </div>
+              <div class="field">
+                <label for="sm_weightConsistency">Consistency weight: <span id="sm_weightConsistencyVal">35</span></label>
+                <input id="sm_weightConsistency" type="range" min="0" max="100" value="35" />
+              </div>
+              <div class="field">
+                <label for="sm_weightExecution">Execution weight: <span id="sm_weightExecutionVal">30</span></label>
+                <input id="sm_weightExecution" type="range" min="0" max="100" value="30" />
+              </div>
+              <label class="settings-check"><input type="checkbox" id="sm_includeEvents" checked /> Include event attendance</label>
+              <label class="settings-check"><input type="checkbox" id="sm_includePublishing" checked /> Include content publishing</label>
+              <label class="settings-check"><input type="checkbox" id="sm_includeCrm" checked /> Include CRM tracking</label>
+            </article>
+
+            <article class="settings-block settings-block--full">
+              <div class="row-actions" style="margin-top: 0">
+                <button type="button" class="primary" id="sitesSettingsSaveBtn">Save settings</button>
+                <button type="button" id="sitesSettingsResetBtn">Reset defaults</button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./js/networking-sites.js"></script>
+    <aside class="next-panel next-panel--sites" id="nextPanel" aria-labelledby="nextPanelTitle">
+      <p class="next-panel__eyebrow">Workflow guide</p>
+      <h2 id="nextPanelTitle">What's next?</h2>
+      <ul class="next-panel__list" id="nextPanelList">
+        <li>Run Rhythm Coach to get your weekly cadence.</li>
+      </ul>
+    </aside>
+  </body>
+</html>
