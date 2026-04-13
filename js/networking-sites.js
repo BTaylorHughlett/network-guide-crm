@@ -73,7 +73,6 @@ const recentWinXp = document.getElementById("recentWinXp");
 const recentWinProgressBar = document.getElementById("recentWinProgressBar");
 const recentWinEncouragement = document.getElementById("recentWinEncouragement");
 const recentWinShareBtn = document.getElementById("recentWinShareBtn");
-const recentWinCta = document.getElementById("recentWinCta");
 
 let lastGeneratedEventDraft = "";
 let collapsesInitialized = false;
@@ -562,12 +561,12 @@ function renderRecentWinBanner(activity, snapshot, momentumHistory) {
     recentWinBanner.classList.add("is-empty");
     if (recentWinIcon) recentWinIcon.textContent = "🏁";
     if (recentWinMessage) recentWinMessage.textContent = "Your next win is just one message away.";
-    if (recentWinCta) recentWinCta.hidden = false;
+    setRecentWinPromptAction(true);
     return;
   }
 
   recentWinBanner.classList.remove("is-empty");
-  if (recentWinCta) recentWinCta.hidden = true;
+  setRecentWinPromptAction(false);
 
   const win = describeWin(latest);
   const momentumPct = Math.min(100, Math.round((snapshot.momentumCount / 6) * 100));
@@ -581,6 +580,33 @@ function renderRecentWinBanner(activity, snapshot, momentumHistory) {
     recentWinEncouragement.textContent = strongWeek
       ? "You're in the top 10% of networkers this week!"
       : "Stay consistent this week and watch your momentum accelerate.";
+  }
+}
+
+function setRecentWinPromptAction(enabled) {
+  if (!recentWinMessage) return;
+  if (enabled) {
+    recentWinMessage.classList.add("is-actionable");
+    recentWinMessage.setAttribute("role", "link");
+    recentWinMessage.setAttribute("tabindex", "0");
+    recentWinMessage.setAttribute("aria-label", "Go to momentum score section");
+  } else {
+    recentWinMessage.classList.remove("is-actionable");
+    recentWinMessage.removeAttribute("role");
+    recentWinMessage.removeAttribute("tabindex");
+    recentWinMessage.removeAttribute("aria-label");
+  }
+}
+
+function jumpToMomentumScore() {
+  if (!recentWinBanner || !recentWinBanner.classList.contains("is-empty")) return;
+  const target = document.getElementById("momentum-score");
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (typeof history.replaceState === "function") {
+    history.replaceState(null, "", "#momentum-score");
+  } else {
+    window.location.hash = "momentum-score";
   }
 }
 
@@ -1050,6 +1076,16 @@ if (recentWinShareBtn) {
   recentWinShareBtn.addEventListener("click", () => {
     const shareUrl = "https://www.linkedin.com/feed/";
     window.open(shareUrl, "_blank", "noopener,noreferrer");
+  });
+}
+
+if (recentWinMessage) {
+  recentWinMessage.addEventListener("click", jumpToMomentumScore);
+  recentWinMessage.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      jumpToMomentumScore();
+    }
   });
 }
 

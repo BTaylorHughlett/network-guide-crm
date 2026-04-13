@@ -38,6 +38,7 @@ network-guide-crm/
 	contacts.html                # Contacts CRM UI
 	index.html                   # Planner UI
 	networking-sites.html        # Playbook UI
+	package.json                 # npm scripts (start, dev) and engine requirements
 	server.mjs                   # Optional local HTTP server + /api/plan proxy
 	start.ps1                    # Convenience script to run server.mjs
 	css/
@@ -144,15 +145,17 @@ Run the local Node server to serve static assets and enable optional OpenAI gene
 cd C:\Users\BrandonTaylor-Hughle\Projects\network-guide-crm
 $env:OPENAI_API_KEY="your_key_here"   # optional but required for OpenAI plan generation
 $env:OPENAI_MODEL="gpt-4o-mini"       # optional
-node .\server.mjs
+npm start
 ```
 
 3. Open `http://localhost:8787`.
 
-You can also run:
+Alternatives:
 
 ```powershell
-.\start.ps1
+npm run dev        # same as start but auto-restarts on file changes (node --watch)
+.\start.ps1        # PowerShell convenience script
+node .\server.mjs  # direct invocation
 ```
 
 ### Option B: Static-file mode
@@ -211,21 +214,14 @@ Core keys used across the app:
 
 ## Troubleshooting
 
-### `npm run serve` fails
+### Available npm scripts
 
-This repository does not currently include a `package.json` script named `serve`.
+| Command | What it does |
+|---|---|
+| `npm start` | Start the server |
+| `npm run dev` | Start with `--watch` (auto-restart on changes) |
 
-Use one of:
-
-```powershell
-node .\server.mjs
-```
-
-or
-
-```powershell
-.\start.ps1
-```
+If you run an unlisted script name (e.g. `npm run serve`), npm will error. Use `npm start` or `npm run dev`.
 
 ### Planner says it used local generation
 
@@ -239,7 +235,7 @@ or
 - Add typed schema validation for imports/settings.
 - Add unit tests for scoring, momentum, and planner fallback logic.
 - Add end-to-end test flows for Planner -> CRM -> Playbook.
-- Add package scripts (`start`, `dev`, `lint`, `test`) for smoother setup.
+- Add `lint` and `test` npm scripts.
 
 ## License
 
