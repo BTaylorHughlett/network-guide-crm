@@ -1,669 +1,712 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contacts — Network Guide CRM</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Exo+2:wght@700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <div class="brand"><span class="brand__sub" aria-hidden="true"></span><span class="brand__text"><span class="brand__node">Node</span><span class="brand__logic">Logic</span></span></div>
-        <nav class="nav" aria-label="Primary">
-          <a href="./index.html">Planner</a>
-          <a href="./contacts.html" aria-current="page">Contacts CRM</a>
-          <a href="./networking-sites.html">Networking sites</a>
-          <a href="#settings" id="settingsTabLink">Settings</a>
-        </nav>
-      </div>
-    </header>
 
-    <div class="crm-toolkit-bar" role="navigation" aria-label="Your CRM toolkit">
-      <div class="crm-toolkit-bar__inner">
-        <span class="crm-toolkit-bar__title">Your CRM Toolkit</span>
-        <a href="#contactsSection">Contacts</a>
-        <a href="#analyticsSection">Analytics</a>
-        <a href="#copilotSection">Copilot Suggestions</a>
-        <a href="#reportSection">Report</a>
-      </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacts — Network Guide CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Exo+2:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand"><span class="brand__sub" aria-hidden="true"></span><span class="brand__text"><span
+            class="brand__node">Node</span><span class="brand__logic">Logic</span></span></div>
+      <nav class="nav" aria-label="Primary">
+        <a href="./index.html">Planner</a>
+        <a href="./contacts.html" aria-current="page">Contacts CRM</a>
+        <a href="./networking-sites.html">Networking sites</a>
+        <a href="#settings" id="settingsTabLink">Settings</a>
+      </nav>
     </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="page-title-row">
-          <h1>Your networking CRM</h1>
-          <span id="pageStatusDot" class="page-status-dot is-not-started" aria-hidden="true"></span>
+  <div class="crm-toolkit-bar" role="navigation" aria-label="Your CRM toolkit">
+    <div class="crm-toolkit-bar__inner">
+      <span class="crm-toolkit-bar__title">Your CRM Toolkit</span>
+      <a href="#contactsSection">Contacts</a>
+      <a href="#analyticsSection">Analytics</a>
+      <a href="#copilotSection">Copilot Suggestions</a>
+      <a href="#reportSection">Report</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="page-title-row">
+        <h1>Your networking CRM</h1>
+        <span id="pageStatusDot" class="page-status-dot is-not-started" aria-hidden="true"></span>
+      </div>
+      <p>
+        Keep a thorough record of relationships, follow-ups, and outcomes. Priority highlights who to contact next
+        based on timing, momentum, and overlap with your saved planner goal.
+      </p>
+    </section>
+
+    <div id="bannerHost"></div>
+
+    <div class="crm-shell" id="crmShell">
+      <aside class="crm-sidebar" aria-label="CRM shortcuts">
+        <div class="crm-sidebar__sticky">
+          <p class="crm-sidebar__head">Your CRM Toolkit</p>
+          <nav class="crm-sidebar__nav" aria-label="CRM sections">
+            <a href="#contactsSection">Contacts</a>
+            <a href="#analyticsSection">Analytics</a>
+            <a href="#copilotSection">Copilot Suggestions</a>
+            <a href="#reportSection">Report</a>
+          </nav>
         </div>
-        <p>
-          Keep a thorough record of relationships, follow-ups, and outcomes. Priority highlights who to contact next
-          based on timing, momentum, and overlap with your saved planner goal.
-        </p>
-      </section>
+      </aside>
 
-      <div id="bannerHost"></div>
-
-      <div class="crm-shell" id="crmShell">
-        <aside class="crm-sidebar" aria-label="CRM shortcuts">
-          <div class="crm-sidebar__sticky">
-            <p class="crm-sidebar__head">Your CRM Toolkit</p>
-            <nav class="crm-sidebar__nav" aria-label="CRM sections">
-              <a href="#contactsSection">Contacts</a>
-              <a href="#analyticsSection">Analytics</a>
-              <a href="#copilotSection">Copilot Suggestions</a>
-              <a href="#reportSection">Report</a>
-            </nav>
+      <div class="crm-main">
+        <section class="card smart-progress" id="crmProgressSection" aria-labelledby="crmProgressTitle">
+          <div class="smart-progress__head">
+            <h2 id="crmProgressTitle">Ecosystem progress</h2>
+            <p class="hint" id="crmProgressSummary">Your CRM gets sharper as Planner, follow-ups, and momentum history
+              grow.</p>
           </div>
-        </aside>
+          <div class="smart-progress__grid">
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">Planner</p>
+              <p class="smart-progress__value" id="crmPlannerValue">0%</p>
+              <div class="smart-progress__bar"><span id="crmPlannerBar"></span></div>
+            </article>
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">CRM</p>
+              <p class="smart-progress__value" id="crmContactsValue">0 contacts</p>
+              <div class="smart-progress__bar"><span id="crmContactsBar"></span></div>
+            </article>
+            <article class="smart-progress__card">
+              <p class="smart-progress__label">Momentum</p>
+              <p class="smart-progress__value" id="crmMomentumValue">No scores yet</p>
+              <div class="smart-progress__bar"><span id="crmMomentumBar"></span></div>
+            </article>
+          </div>
+        </section>
 
-        <div class="crm-main">
-          <section class="card smart-progress" id="crmProgressSection" aria-labelledby="crmProgressTitle">
-            <div class="smart-progress__head">
-              <h2 id="crmProgressTitle">Ecosystem progress</h2>
-              <p class="hint" id="crmProgressSummary">Your CRM gets sharper as Planner, follow-ups, and momentum history grow.</p>
+        <section class="card" id="contactsSection">
+          <div class="toolbar">
+            <div class="toolbar__left">
+              <button type="button" class="primary" id="addContactBtn">Add contact</button>
+              <button type="button" id="exportCsvBtn">Export CSV</button>
+              <label class="pill action-pill" style="cursor: pointer">
+                Import CSV
+                <input id="importCsvInput" type="file" accept=".csv,text/csv" class="sr-only" />
+              </label>
+              <span class="hint" id="importTypeHint" aria-live="polite">Import type detected: --</span>
+              <div class="filter-select-wrap">
+                <select id="lastContactedFilter" class="pill" style="cursor: pointer; font-size: 0.9rem">
+                  <option value="">All dates</option>
+                  <option value="7">Last 7 days</option>
+                  <option value="14">Last 14 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                  <option value="90+">Older than 90 days</option>
+                  <option value="never">Never contacted</option>
+                </select>
+                <span class="filter-select-wrap__label" aria-hidden="true">Filter by date</span>
+              </div>
+              <input id="contactsSearch" class="pill" type="search"
+                placeholder="Search contacts, company, tags, notes..." aria-label="Search contacts table"
+                autocomplete="off" style="min-width: 17.5rem" />
             </div>
-            <div class="smart-progress__grid">
-              <article class="smart-progress__card">
-                <p class="smart-progress__label">Planner</p>
-                <p class="smart-progress__value" id="crmPlannerValue">0%</p>
-                <div class="smart-progress__bar"><span id="crmPlannerBar"></span></div>
-              </article>
-              <article class="smart-progress__card">
-                <p class="smart-progress__label">CRM</p>
-                <p class="smart-progress__value" id="crmContactsValue">0 contacts</p>
-                <div class="smart-progress__bar"><span id="crmContactsBar"></span></div>
-              </article>
-              <article class="smart-progress__card">
-                <p class="smart-progress__label">Momentum</p>
-                <p class="smart-progress__value" id="crmMomentumValue">No scores yet</p>
-                <div class="smart-progress__bar"><span id="crmMomentumBar"></span></div>
-              </article>
+            <div class="toolbar__right" id="plannerGoalSection">
+              <span class="pill" id="profilePill">Step 1: Set your networking goal in Planner</span>
             </div>
-          </section>
+          </div>
 
-          <section class="card" id="contactsSection">
-            <div class="toolbar">
-              <div class="toolbar__left">
-                <button type="button" class="primary" id="addContactBtn">Add contact</button>
-                <button type="button" id="exportCsvBtn">Export CSV</button>
-                <label class="pill action-pill" style="cursor: pointer">
-                  Import CSV
-                  <input id="importCsvInput" type="file" accept=".csv,text/csv" class="sr-only" />
-                </label>
-                <span class="hint" id="importTypeHint" aria-live="polite">Import type detected: --</span>
-                <div class="filter-select-wrap">
-                  <select id="lastContactedFilter" class="pill" style="cursor: pointer; font-size: 0.9rem">
-                    <option value="">All dates</option>
-                    <option value="7">Last 7 days</option>
-                    <option value="14">Last 14 days</option>
-                    <option value="30">Last 30 days</option>
-                    <option value="90">Last 90 days</option>
-                    <option value="90+">Older than 90 days</option>
-                    <option value="never">Never contacted</option>
-                  </select>
-                  <span class="filter-select-wrap__label" aria-hidden="true">Filter by date</span>
-                </div>
-                <input
-                  id="contactsSearch"
-                  class="pill"
-                  type="search"
-                  placeholder="Search contacts, company, tags, notes..."
-                  aria-label="Search contacts table"
-                  autocomplete="off"
-                  style="min-width: 17.5rem"
-                />
-              </div>
-              <div class="toolbar__right" id="plannerGoalSection">
-                <span class="pill" id="profilePill">Step 1: Set your networking goal in Planner</span>
-              </div>
+          <div class="card crm-priority-info" style="margin-bottom: 0.9rem" id="followUpSection">
+            <div class="sites-section-head" style="margin-bottom: 0.45rem">
+              <h2 class="sites-section-title" style="margin-bottom: 0">Priority Reason</h2>
+              <button type="button" class="section-collapse-toggle" id="priorityReasonToggle" aria-expanded="true"
+                aria-controls="priorityReasonBody">Collapse</button>
             </div>
-
-            <div class="card crm-priority-info" style="margin-bottom: 0.9rem" id="followUpSection">
-              <div class="sites-section-head" style="margin-bottom: 0.45rem">
-                <h2 class="sites-section-title" style="margin-bottom: 0">Priority Reason</h2>
-                <button type="button" class="section-collapse-toggle" id="priorityReasonToggle" aria-expanded="true" aria-controls="priorityReasonBody">Collapse</button>
-              </div>
-              <div id="priorityReasonBody" class="section-collapse-body">
-                <p class="hint" style="margin-top: 0">Priority is personalized for each contact based on three signals:</p>
-                <ul class="sites-signals" style="margin-top: 0.4rem">
-                  <li><strong>Timing:</strong> How long since last contact.</li>
-                  <li><strong>Momentum:</strong> How active the relationship is.</li>
-                  <li><strong>Goal Fit:</strong> How aligned they are with your monthly networking goal.</li>
-                </ul>
-                <div class="crm-color-key" aria-label="Color coding key">
-                  <span><i class="crm-dot crm-dot--green"></i>Green: High momentum</span>
-                  <span><i class="crm-dot crm-dot--yellow"></i>Yellow: Needs follow-up</span>
-                  <span><i class="crm-dot crm-dot--red"></i>Red: Overdue</span>
-                  <span><i class="crm-dot crm-dot--blue"></i>Blue: Goal-aligned</span>
-                </div>
+            <div id="priorityReasonBody" class="section-collapse-body">
+              <p class="hint" style="margin-top: 0">Priority is personalized for each contact based on three signals:
+              </p>
+              <ul class="sites-signals" style="margin-top: 0.4rem">
+                <li><strong>Timing:</strong> How long since last contact.</li>
+                <li><strong>Momentum:</strong> How active the relationship is.</li>
+                <li><strong>Goal Fit:</strong> How aligned they are with your monthly networking goal.</li>
+              </ul>
+              <div class="crm-color-key" aria-label="Color coding key">
+                <span><i class="crm-dot crm-dot--green"></i>Green: High momentum</span>
+                <span><i class="crm-dot crm-dot--yellow"></i>Yellow: Needs follow-up</span>
+                <span><i class="crm-dot crm-dot--red"></i>Red: Overdue</span>
+                <span><i class="crm-dot crm-dot--blue"></i>Blue: Goal-aligned</span>
               </div>
             </div>
+          </div>
 
-            <div class="table-wrap" role="region" aria-label="Contacts table" tabindex="0">
-              <table class="data" id="contactsTable">
-                <thead>
-                  <tr>
-                    <th data-sort="priority">Priority</th>
-                    <th data-sort="name">Name</th>
-                    <th data-sort="company">Company</th>
-                    <th data-sort="title">Title</th>
-                    <th data-sort="relationship">Relationship</th>
-                    <th data-sort="status">Status</th>
-                    <th data-sort="lastContacted">Last contacted</th>
-                    <th data-sort="nextFollowUp">Next follow-up</th>
-                    <th>Tags</th>
-                    <th>Goals / notes</th>
-                    <th>Last outcome</th>
-                    <th>Contact</th>
-                    <th aria-label="Actions">Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="contactsBody"></tbody>
-              </table>
+          <div class="table-wrap" role="region" aria-label="Contacts table" tabindex="0">
+            <table class="data" id="contactsTable">
+              <thead>
+                <tr>
+                  <th data-sort="priority">Priority</th>
+                  <th data-sort="name">Name</th>
+                  <th data-sort="company">Company</th>
+                  <th data-sort="title">Title</th>
+                  <th data-sort="relationship">Relationship</th>
+                  <th data-sort="status">Status</th>
+                  <th data-sort="lastContacted">Last contacted</th>
+                  <th data-sort="nextFollowUp">Next follow-up</th>
+                  <th>Tags</th>
+                  <th>Goals / notes</th>
+                  <th>Last outcome</th>
+                  <th>Contact</th>
+                  <th aria-label="Actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="contactsBody"></tbody>
+            </table>
+          </div>
+          <p class="hint" id="tableHint" style="margin-top: 0.5rem; text-align: center;" hidden>💡 Tip: Click any row to
+            quickly edit contact details</p>
+          <div class="empty" id="emptyState" hidden>
+            <h3 style="margin-top: 0">Get started in 3 steps</h3>
+            <ol class="empty-steps">
+              <li>Step 1: Set your networking goal in Planner.</li>
+              <li>Step 2: Add your first contact.</li>
+              <li>Step 3: Get your personalized follow-up priority list.</li>
+            </ol>
+            <div class="row-actions" style="justify-content: center">
+              <a class="button" href="./index.html">Go to Planner</a>
+              <button type="button" class="primary" id="emptyAddContactBtn">Add first contact</button>
             </div>
-            <div class="empty" id="emptyState" hidden>
-              <h3 style="margin-top: 0">Get started in 3 steps</h3>
-              <ol class="empty-steps">
-                <li>Step 1: Set your networking goal in Planner.</li>
-                <li>Step 2: Add your first contact.</li>
-                <li>Step 3: Get your personalized follow-up priority list.</li>
-              </ol>
-              <div class="row-actions" style="justify-content: center">
-                <a class="button" href="./index.html">Go to Planner</a>
-                <button type="button" class="primary" id="emptyAddContactBtn">Add first contact</button>
-              </div>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section class="card" id="analyticsSection">
-            <h2 class="sites-section-title">Micro-analytics</h2>
-            <div class="crm-analytics-grid" id="crmAnalyticsGrid">
-              <article class="crm-stat"><h3>Contacts added this month</h3><p id="statAddedMonth">0</p></article>
-              <article class="crm-stat"><h3>Follow-ups due this week</h3><p id="statDueWeek">0</p></article>
-              <article class="crm-stat"><h3>Top 3 gaining momentum</h3><p id="statTopMomentum">-</p></article>
-              <article class="crm-stat"><h3>Overdue follow-ups</h3><p id="statOverdue">0</p></article>
-            </div>
-          </section>
+        <section class="card" id="analyticsSection">
+          <h2 class="sites-section-title">Micro-analytics</h2>
+          <div class="crm-analytics-grid" id="crmAnalyticsGrid">
+            <article class="crm-stat">
+              <h3>Contacts added this month</h3>
+              <p id="statAddedMonth">0</p>
+            </article>
+            <article class="crm-stat">
+              <h3>Follow-ups due this week</h3>
+              <p id="statDueWeek">0</p>
+            </article>
+            <article class="crm-stat">
+              <h3>Top 3 gaining momentum</h3>
+              <p id="statTopMomentum">-</p>
+            </article>
+            <article class="crm-stat">
+              <h3>Overdue follow-ups</h3>
+              <p id="statOverdue">0</p>
+            </article>
+          </div>
+        </section>
 
-          <section class="card" id="copilotSection">
-            <div class="sites-section-head">
-              <h2 class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">✦</span>Copilot Suggestions</h2>
-              <p class="section-why">Use Planner goal and CRM signals to choose who to contact, what to say, and your next best move.</p>
+        <section class="card" id="copilotSection">
+          <div class="sites-section-head">
+            <h2 class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">✦</span>Copilot
+              Suggestions</h2>
+            <p class="section-why">Use Planner goal and CRM signals to choose who to contact, what to say, and your next
+              best move.</p>
+          </div>
+          <article class="copilot-card" style="margin-bottom: 1rem">
+            <div class="copilot-card__head">
+              <h3>Suggested next actions</h3>
             </div>
-            <article class="copilot-card" style="margin-bottom: 1rem">
+            <ul class="sites-signals" id="suggestionsList">
+              <li>Add contacts to start seeing suggestions.</li>
+            </ul>
+          </article>
+          <div class="copilot-grid">
+            <article class="copilot-card">
               <div class="copilot-card__head">
-                <h3>Suggested next actions</h3>
+                <h3>Who should I contact today?</h3>
+                <button type="button" class="primary" id="whoTodayBtn">Pick priority contact</button>
               </div>
-              <ul class="sites-signals" id="suggestionsList">
-                <li>Add contacts to start seeing suggestions.</li>
+              <div id="whoTodayResult" class="copilot-result empty-copy">Generate a daily recommendation: one priority
+                person, one message, one next step.</div>
+            </article>
+            <article class="copilot-card">
+              <div class="copilot-card__head">
+                <h3>Auto-generated outreach</h3>
+              </div>
+              <div class="field">
+                <label for="copilotContactSelect">Choose a contact</label>
+                <select id="copilotContactSelect">
+                  <option value="">Select a contact</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="copilotMessageMode">Message type</label>
+                <select id="copilotMessageMode">
+                  <option value="intro">Fresh outreach</option>
+                  <option value="follow-up">Follow-up</option>
+                  <option value="reconnect">Reconnect</option>
+                </select>
+              </div>
+              <div class="row-actions" style="margin-top: 0">
+                <button type="button" id="generateMessageBtn">Generate message</button>
+              </div>
+              <pre class="generated-copy"
+                id="copilotMessageOutput">Choose a contact to generate a personalized outreach draft.</pre>
+            </article>
+          </div>
+          <div class="copilot-grid copilot-grid--bottom">
+            <article class="copilot-card">
+              <h3>Monthly 3 people to reach out to</h3>
+              <ol class="action-list" id="monthlyReachoutList">
+                <li>Add contacts to generate your top three.</li>
+              </ol>
+            </article>
+            <article class="copilot-card">
+              <h3>Pending follow-up drafts</h3>
+              <ul class="action-list" id="pendingFollowupList">
+                <li>No drafts yet. Save one from the Playbook event generator.</li>
               </ul>
             </article>
-            <div class="copilot-grid">
-              <article class="copilot-card">
-                <div class="copilot-card__head">
-                  <h3>Who should I contact today?</h3>
-                  <button type="button" class="primary" id="whoTodayBtn">Pick priority contact</button>
-                </div>
-                <div id="whoTodayResult" class="copilot-result empty-copy">Generate a daily recommendation: one priority person, one message, one next step.</div>
-              </article>
-              <article class="copilot-card">
-                <div class="copilot-card__head">
-                  <h3>Auto-generated outreach</h3>
-                </div>
-                <div class="field">
-                  <label for="copilotContactSelect">Choose a contact</label>
-                  <select id="copilotContactSelect">
-                    <option value="">Select a contact</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="copilotMessageMode">Message type</label>
-                  <select id="copilotMessageMode">
-                    <option value="intro">Fresh outreach</option>
-                    <option value="follow-up">Follow-up</option>
-                    <option value="reconnect">Reconnect</option>
-                  </select>
-                </div>
-                <div class="row-actions" style="margin-top: 0">
-                  <button type="button" id="generateMessageBtn">Generate message</button>
-                </div>
-                <pre class="generated-copy" id="copilotMessageOutput">Choose a contact to generate a personalized outreach draft.</pre>
-              </article>
-            </div>
-            <div class="copilot-grid copilot-grid--bottom">
-              <article class="copilot-card">
-                <h3>Monthly 3 people to reach out to</h3>
-                <ol class="action-list" id="monthlyReachoutList">
-                  <li>Add contacts to generate your top three.</li>
-                </ol>
-              </article>
-              <article class="copilot-card">
-                <h3>Pending follow-up drafts</h3>
-                <ul class="action-list" id="pendingFollowupList">
-                  <li>No drafts yet. Save one from the Playbook event generator.</li>
-                </ul>
-              </article>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section class="card" id="reportSection">
-            <div class="sites-section-head">
-              <h2 class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">📈</span>Monthly networking report</h2>
-              <p class="section-why">Keep momentum by tracking wins, trend movement, and the next gaps to close.</p>
-            </div>
-            <div class="report-grid">
-              <article class="report-card">
-                <h3>Networking streaks</h3>
-                <div class="streak-grid">
-                  <div class="streak-pill"><strong id="streakOutreach">0</strong><span>Outreach days</span></div>
-                  <div class="streak-pill"><strong id="streakEvents">0</strong><span>Event weeks</span></div>
-                  <div class="streak-pill"><strong id="streakCrm">0</strong><span>CRM update days</span></div>
-                </div>
-              </article>
-              <article class="report-card">
-                <h3>Report summary</h3>
-                <ul class="action-list" id="reportWins">
-                  <li>Your report will populate as you use the Planner, CRM, and Playbook together.</li>
-                </ul>
-              </article>
-              <article class="report-card">
-                <h3>Top opportunities</h3>
-                <ul class="action-list" id="reportOpportunities">
-                  <li>Add contacts and calculate momentum to surface your next best moves.</li>
-                </ul>
-              </article>
-            </div>
-          </section>
+        <section class="card" id="reportSection">
+          <div class="sites-section-head">
+            <h2 class="sites-section-title"><span class="sites-section-icon" aria-hidden="true">📈</span>Monthly
+              networking report</h2>
+            <p class="section-why">Keep momentum by tracking wins, trend movement, and the next gaps to close.</p>
+          </div>
+          <div class="report-grid">
+            <article class="report-card">
+              <h3>Networking streaks</h3>
+              <div class="streak-grid">
+                <div class="streak-pill"><strong id="streakOutreach">0</strong><span>Outreach days</span></div>
+                <div class="streak-pill"><strong id="streakEvents">0</strong><span>Event weeks</span></div>
+                <div class="streak-pill"><strong id="streakCrm">0</strong><span>CRM update days</span></div>
+              </div>
+            </article>
+            <article class="report-card">
+              <h3>Report summary</h3>
+              <ul class="action-list" id="reportWins">
+                <li>Your report will populate as you use the Planner, CRM, and Playbook together.</li>
+              </ul>
+            </article>
+            <article class="report-card">
+              <h3>Top opportunities</h3>
+              <ul class="action-list" id="reportOpportunities">
+                <li>Add contacts and calculate momentum to surface your next best moves.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
 
-          <div id="settingsBackdrop" hidden></div>
-          <section class="card floating-settings" id="settingsSection" hidden aria-modal="true" aria-label="Settings panel">
-            <div class="floating-settings__head">
-              <h2 class="sites-section-title" style="margin-bottom: 0">Settings</h2>
-              <button type="button" id="settingsCloseBtn">Close</button>
-            </div>
+        <div id="settingsBackdrop" hidden></div>
+        <section class="card floating-settings" id="settingsSection" hidden aria-modal="true"
+          aria-label="Settings panel">
+          <div class="floating-settings__head">
+            <h2 class="sites-section-title" style="margin-bottom: 0">Settings</h2>
+            <button type="button" id="settingsCloseBtn">Close</button>
+          </div>
 
-            <div class="settings-grid">
-              <article class="settings-block">
-                <h3>1. Profile &amp; Personalization</h3>
-                <div class="field">
-                  <label for="s_profileName">Your name / profile</label>
-                  <input id="s_profileName" type="text" placeholder="Your name" />
-                </div>
-                <div class="field">
-                  <label for="s_profileEmail">Email</label>
-                  <input id="s_profileEmail" type="email" placeholder="you@example.com" />
-                </div>
-                <div class="field">
-                  <label for="s_profilePhone">Phone number</label>
-                  <input id="s_profilePhone" type="tel" placeholder="(555) 555-5555" />
-                </div>
-                <div class="field">
-                  <label for="s_networkFocus">Networking focus</label>
-                  <select id="s_networkFocus">
-                    <option value="job search">Job search</option>
-                    <option value="sales">Sales</option>
-                    <option value="community building">Community building</option>
-                    <option value="fundraising">Fundraising</option>
-                    <option value="general">General growth</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="s_defaultFollowUp">Default follow-up interval</label>
-                  <select id="s_defaultFollowUp">
-                    <option value="7">7 days</option>
-                    <option value="14">14 days</option>
-                    <option value="30">30 days</option>
-                  </select>
-                </div>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="s_preferredComms">Preferred communication method</label>
-                  <select id="s_preferredComms">
-                    <option value="email">Email</option>
-                    <option value="linkedin">LinkedIn</option>
-                    <option value="phone">Phone</option>
-                  </select>
-                </div>
-                <div class="field" style="margin-top: 0.75rem">
-                  <label for="s_oldPassword">Current password</label>
-                  <input id="s_oldPassword" type="password" autocomplete="current-password" placeholder="Current password" />
-                </div>
-                <div class="field">
-                  <label for="s_resetPassword">Reset password</label>
-                  <input id="s_resetPassword" type="password" autocomplete="new-password" placeholder="New password" />
-                </div>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="s_resetPasswordConfirm">Confirm new password</label>
-                  <input id="s_resetPasswordConfirm" type="password" autocomplete="new-password" placeholder="Confirm new password" />
-                  <p class="hint" style="margin-bottom: 0">At least 8 characters with letters, numbers, and symbols.</p>
-                </div>
-                <div class="row-actions" style="margin-top: 0.6rem">
-                  <button type="button" id="s_resetPasswordBtn">Update password</button>
-                </div>
-              </article>
+          <div class="settings-grid">
+            <article class="settings-block">
+              <h3>1. Profile &amp; Personalization</h3>
+              <div class="field">
+                <label for="s_profileName">Your name / profile</label>
+                <input id="s_profileName" type="text" placeholder="Your name" />
+              </div>
+              <div class="field">
+                <label for="s_profileEmail">Email</label>
+                <input id="s_profileEmail" type="email" placeholder="you@example.com" />
+              </div>
+              <div class="field">
+                <label for="s_profilePhone">Phone number</label>
+                <input id="s_profilePhone" type="tel" placeholder="(555) 555-5555" />
+              </div>
+              <div class="field">
+                <label for="s_networkFocus">Networking focus</label>
+                <select id="s_networkFocus">
+                  <option value="job search">Job search</option>
+                  <option value="sales">Sales</option>
+                  <option value="community building">Community building</option>
+                  <option value="fundraising">Fundraising</option>
+                  <option value="general">General growth</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="s_defaultFollowUp">Default follow-up interval</label>
+                <select id="s_defaultFollowUp">
+                  <option value="7">7 days</option>
+                  <option value="14">14 days</option>
+                  <option value="30">30 days</option>
+                </select>
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="s_preferredComms">Preferred communication method</label>
+                <select id="s_preferredComms">
+                  <option value="email">Email</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+              <div class="field" style="margin-top: 0.75rem">
+                <label for="s_oldPassword">Current password</label>
+                <input id="s_oldPassword" type="password" autocomplete="current-password"
+                  placeholder="Current password" />
+              </div>
+              <div class="field">
+                <label for="s_resetPassword">Reset password</label>
+                <input id="s_resetPassword" type="password" autocomplete="new-password" placeholder="New password" />
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="s_resetPasswordConfirm">Confirm new password</label>
+                <input id="s_resetPasswordConfirm" type="password" autocomplete="new-password"
+                  placeholder="Confirm new password" />
+                <p class="hint" style="margin-bottom: 0">At least 8 characters with letters, numbers, and symbols.</p>
+              </div>
+              <div class="row-actions" style="margin-top: 0.6rem">
+                <button type="button" id="s_resetPasswordBtn">Update password</button>
+              </div>
+            </article>
 
-              <article class="settings-block">
-                <h3>2. Priority Scoring Controls</h3>
-                <div class="field">
-                  <label for="s_weightTiming">Timing importance: <span id="s_weightTimingVal">50</span></label>
-                  <input id="s_weightTiming" type="range" min="0" max="100" value="50" />
-                </div>
-                <div class="field">
-                  <label for="s_weightMomentum">Momentum importance: <span id="s_weightMomentumVal">30</span></label>
-                  <input id="s_weightMomentum" type="range" min="0" max="100" value="30" />
-                </div>
-                <div class="field">
-                  <label for="s_weightGoalFit">Goal alignment importance: <span id="s_weightGoalFitVal">20</span></label>
-                  <input id="s_weightGoalFit" type="range" min="0" max="100" value="20" />
-                </div>
-                <label class="settings-check"><input id="s_toggleOverdueRed" type="checkbox" checked /> Highlight overdue contacts in red</label>
-                <label class="settings-check"><input id="s_toggleMomentumCoding" type="checkbox" checked /> Show momentum color coding</label>
-              </article>
+            <article class="settings-block">
+              <h3>2. Priority Scoring Controls</h3>
+              <div class="field">
+                <label for="s_weightTiming">Timing importance: <span id="s_weightTimingVal">50</span></label>
+                <input id="s_weightTiming" type="range" min="0" max="100" value="50" />
+              </div>
+              <div class="field">
+                <label for="s_weightMomentum">Momentum importance: <span id="s_weightMomentumVal">30</span></label>
+                <input id="s_weightMomentum" type="range" min="0" max="100" value="30" />
+              </div>
+              <div class="field">
+                <label for="s_weightGoalFit">Goal alignment importance: <span id="s_weightGoalFitVal">20</span></label>
+                <input id="s_weightGoalFit" type="range" min="0" max="100" value="20" />
+              </div>
+              <label class="settings-check"><input id="s_toggleOverdueRed" type="checkbox" checked /> Highlight overdue
+                contacts in red</label>
+              <label class="settings-check"><input id="s_toggleMomentumCoding" type="checkbox" checked /> Show momentum
+                color coding</label>
+            </article>
 
-              <article class="settings-block">
-                <h3>3. Data Management</h3>
-                <p class="hint" style="margin-top: 0">Import history: <span id="s_importHistory">No imports yet.</span></p>
-                <div class="field">
-                  <label for="s_exportType">Export options</label>
-                  <select id="s_exportType">
-                    <option value="csv">CSV</option>
-                    <option value="json">JSON</option>
-                  </select>
-                </div>
-                <div class="row-actions" style="margin-top: 0">
-                  <button type="button" id="s_runExport">Run export</button>
-                  <button type="button" id="s_backupBtn">Backup</button>
-                  <label class="pill action-pill" style="cursor: pointer">
-                    Restore
-                    <input id="s_restoreInput" type="file" accept="application/json" class="sr-only" />
-                  </label>
-                </div>
-                <div class="row-actions" style="margin-top: 0.5rem">
-                  <button type="button" id="s_clearContactsBtn">Clear all contacts</button>
-                  <button type="button" id="s_resetAnalyticsBtn">Reset analytics</button>
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>3. Data Management</h3>
+              <p class="hint" style="margin-top: 0">Import history: <span id="s_importHistory">No imports yet.</span>
+              </p>
+              <div class="field">
+                <label for="s_exportType">Export options</label>
+                <select id="s_exportType">
+                  <option value="csv">CSV</option>
+                  <option value="json">JSON</option>
+                </select>
+              </div>
+              <div class="row-actions" style="margin-top: 0">
+                <button type="button" id="s_runExport">Run export</button>
+                <button type="button" id="s_backupBtn">Backup</button>
+                <label class="pill action-pill" style="cursor: pointer">
+                  Restore
+                  <input id="s_restoreInput" type="file" accept="application/json" class="sr-only" />
+                </label>
+              </div>
+              <div class="row-actions" style="margin-top: 0.5rem">
+                <button type="button" id="s_clearContactsBtn">Clear all contacts</button>
+                <button type="button" id="s_resetAnalyticsBtn">Reset analytics</button>
+              </div>
+            </article>
 
-              <article class="settings-block">
-                <h3>4. Notifications &amp; Reminders</h3>
-                <label class="settings-check"><input id="s_reminderToggle" type="checkbox" /> Daily/weekly reminder toggle</label>
-                <div class="field">
-                  <label for="s_reminderTime">Time of day for reminders</label>
-                  <input id="s_reminderTime" type="time" value="09:00" />
-                </div>
-                <label class="settings-check"><input id="s_notifyOverdue" type="checkbox" checked /> Notify me when a contact becomes overdue</label>
-                <label class="settings-check"><input id="s_notifyMomentumDrop" type="checkbox" /> Notify me when momentum drops</label>
-              </article>
+            <article class="settings-block">
+              <h3>4. Notifications &amp; Reminders</h3>
+              <label class="settings-check"><input id="s_reminderToggle" type="checkbox" /> Daily/weekly reminder
+                toggle</label>
+              <div class="field">
+                <label for="s_reminderTime">Time of day for reminders</label>
+                <input id="s_reminderTime" type="time" value="09:00" />
+              </div>
+              <label class="settings-check"><input id="s_notifyOverdue" type="checkbox" checked /> Notify me when a
+                contact becomes overdue</label>
+              <label class="settings-check"><input id="s_notifyMomentumDrop" type="checkbox" /> Notify me when momentum
+                drops</label>
+            </article>
 
-              <article class="settings-block">
-                <h3>5. Display &amp; Layout</h3>
-                <div class="field">
-                  <label for="s_rowDensity">Compact vs. expanded contact rows</label>
-                  <select id="s_rowDensity">
-                    <option value="expanded">Expanded</option>
-                    <option value="compact">Compact</option>
-                  </select>
-                </div>
-                <label class="settings-check"><input id="s_showAnalytics" type="checkbox" checked /> Show micro-analytics</label>
-                <label class="settings-check"><input id="s_showTimeline" type="checkbox" checked /> Show relationship timeline</label>
-                <label class="settings-check"><input id="s_darkMode" type="checkbox" /> Dark mode toggle</label>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="s_sortDefault">Sort default</label>
-                  <select id="s_sortDefault">
-                    <option value="priority">Priority</option>
-                    <option value="name">Name</option>
-                    <option value="lastContacted">Last contact date</option>
-                  </select>
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>5. Display &amp; Layout</h3>
+              <div class="field">
+                <label for="s_rowDensity">Compact vs. expanded contact rows</label>
+                <select id="s_rowDensity">
+                  <option value="expanded">Expanded</option>
+                  <option value="compact">Compact</option>
+                </select>
+              </div>
+              <label class="settings-check"><input id="s_showAnalytics" type="checkbox" checked /> Show
+                micro-analytics</label>
+              <label class="settings-check"><input id="s_showTimeline" type="checkbox" checked /> Show relationship
+                timeline</label>
+              <label class="settings-check"><input id="s_darkMode" type="checkbox" /> Dark mode toggle</label>
+              <div class="field" style="margin-bottom: 0">
+                <label for="s_sortDefault">Sort default</label>
+                <select id="s_sortDefault">
+                  <option value="priority">Priority</option>
+                  <option value="name">Name</option>
+                  <option value="lastContacted">Last contact date</option>
+                </select>
+              </div>
+            </article>
 
-              <article class="settings-block">
-                <h3>6. Privacy &amp; Security</h3>
-                <label class="settings-check"><input id="s_lockPinToggle" type="checkbox" /> Lock app with PIN</label>
-                <div class="field">
-                  <label for="s_lockPin">PIN</label>
-                  <input id="s_lockPin" type="password" inputmode="numeric" minlength="4" maxlength="8" placeholder="4-8 digits" />
-                </div>
-                <div class="field">
-                  <label for="s_autoLockMins">Auto-lock after inactivity</label>
-                  <select id="s_autoLockMins">
-                    <option value="0">Off</option>
-                    <option value="5">5 minutes</option>
-                    <option value="15">15 minutes</option>
-                    <option value="30">30 minutes</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="s_storageMode">Storage mode</label>
-                  <select id="s_storageMode">
-                    <option value="local">Local storage</option>
-                    <option value="cloud" disabled>Cloud sync (coming soon)</option>
-                  </select>
-                </div>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="s_visibilityMode">Data visibility settings</label>
-                  <select id="s_visibilityMode">
-                    <option value="full">Full details</option>
-                    <option value="masked">Mask contact details</option>
-                  </select>
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>6. Privacy &amp; Security</h3>
+              <label class="settings-check"><input id="s_lockPinToggle" type="checkbox" /> Lock app with PIN</label>
+              <div class="field">
+                <label for="s_lockPin">PIN</label>
+                <input id="s_lockPin" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                  minlength="4" maxlength="8" placeholder="4-8 digits" />
 
-              <article class="settings-block">
-                <h3>7. Integrations</h3>
-                <label class="settings-check"><input id="s_integrationLinkedIn" type="checkbox" /> Connect LinkedIn</label>
-                <label class="settings-check"><input id="s_integrationEmail" type="checkbox" /> Connect email</label>
-                <label class="settings-check"><input id="s_integrationCalendar" type="checkbox" /> Connect calendar</label>
-                <label class="settings-check"><input id="s_integrationReminders" type="checkbox" /> Sync follow-ups with reminders</label>
-              </article>
+              </div>
+              <div class="field">
+                <label for="s_autoLockMins">Auto-lock after inactivity</label>
+                <select id="s_autoLockMins">
+                  <option value="0">Off</option>
+                  <option value="5">5 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="s_storageMode">Storage mode</label>
+                <select id="s_storageMode">
+                  <option value="local">Local storage</option>
+                  <option value="cloud" disabled>Cloud sync (coming soon)</option>
+                </select>
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="s_visibilityMode">Data visibility settings</label>
+                <select id="s_visibilityMode">
+                  <option value="full">Full details</option>
+                  <option value="masked">Mask contact details</option>
+                </select>
+              </div>
+            </article>
 
-              <article class="settings-block">
-                <h3>8. Networking Sites Platform Preferences</h3>
-                <label class="settings-check"><input type="checkbox" id="sp_linkedin" checked /> LinkedIn</label>
-                <label class="settings-check"><input type="checkbox" id="sp_slack" checked /> Slack/Discord</label>
-                <label class="settings-check"><input type="checkbox" id="sp_meetup" checked /> Meetup</label>
-                <label class="settings-check"><input type="checkbox" id="sp_x" checked /> X</label>
-                <label class="settings-check"><input type="checkbox" id="sp_substack" checked /> Substack</label>
-                <label class="settings-check"><input type="checkbox" id="sp_upwork" checked /> Upwork</label>
-                <label class="settings-check"><input type="checkbox" id="sp_medium" checked /> Medium</label>
-                <label class="settings-check"><input type="checkbox" id="sp_eventbrite" checked /> Eventbrite</label>
-                <label class="settings-check"><input type="checkbox" id="sp_wellfound" checked /> Wellfound</label>
-              </article>
+            <article class="settings-block">
+              <h3>7. Integrations</h3>
+              <label class="settings-check"><input id="s_integrationLinkedIn" type="checkbox" /> Connect
+                LinkedIn</label>
+              <label class="settings-check"><input id="s_integrationEmail" type="checkbox" /> Connect email</label>
+              <label class="settings-check"><input id="s_integrationCalendar" type="checkbox" /> Connect
+                calendar</label>
+              <label class="settings-check"><input id="s_integrationReminders" type="checkbox" /> Sync follow-ups with
+                reminders</label>
+            </article>
 
-              <article class="settings-block">
-                <h3>9. Networking Sites Workflow Frequency</h3>
-                <div class="field">
-                  <label for="swf_linkedin">LinkedIn posting frequency</label>
-                  <input id="swf_linkedin" type="text" value="3x weekly" />
-                </div>
-                <div class="field">
-                  <label for="swf_slack">Slack/Discord engagement frequency</label>
-                  <input id="swf_slack" type="text" value="Daily, 15 min" />
-                </div>
-                <div class="field">
-                  <label for="swf_events">Event attendance frequency</label>
-                  <input id="swf_events" type="text" value="1x monthly" />
-                </div>
-                <div class="field">
-                  <label for="swf_writing">Writing cadence (Substack/Medium)</label>
-                  <input id="swf_writing" type="text" value="2x monthly" />
-                </div>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="swf_upwork">Upwork refresh frequency</label>
-                  <input id="swf_upwork" type="text" value="Weekly refresh" />
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>8. Networking Sites Platform Preferences</h3>
+              <label class="settings-check"><input type="checkbox" id="sp_linkedin" checked /> LinkedIn</label>
+              <label class="settings-check"><input type="checkbox" id="sp_slack" checked /> Slack/Discord</label>
+              <label class="settings-check"><input type="checkbox" id="sp_meetup" checked /> Meetup</label>
+              <label class="settings-check"><input type="checkbox" id="sp_x" checked /> X</label>
+              <label class="settings-check"><input type="checkbox" id="sp_substack" checked /> Substack</label>
+              <label class="settings-check"><input type="checkbox" id="sp_upwork" checked /> Upwork</label>
+              <label class="settings-check"><input type="checkbox" id="sp_medium" checked /> Medium</label>
+              <label class="settings-check"><input type="checkbox" id="sp_eventbrite" checked /> Eventbrite</label>
+              <label class="settings-check"><input type="checkbox" id="sp_wellfound" checked /> Wellfound</label>
+            </article>
 
-              <article class="settings-block">
-                <h3>10. Networking Sites Persona</h3>
-                <div class="field" style="margin-bottom: 0">
-                  <label for="sp_persona">Persona selection</label>
-                  <select id="sp_persona">
-                    <option value="job-seeker">Job seeker</option>
-                    <option value="founder">Founder</option>
-                    <option value="freelancer">Freelancer</option>
-                    <option value="career-switcher">Career switcher</option>
-                    <option value="community-builder">Community builder</option>
-                    <option value="thought-leader">Thought leader</option>
-                  </select>
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>9. Networking Sites Workflow Frequency</h3>
+              <div class="field">
+                <label for="swf_linkedin">LinkedIn posting frequency</label>
+                <input id="swf_linkedin" type="text" value="3x weekly" />
+              </div>
+              <div class="field">
+                <label for="swf_slack">Slack/Discord engagement frequency</label>
+                <input id="swf_slack" type="text" value="Daily, 15 min" />
+              </div>
+              <div class="field">
+                <label for="swf_events">Event attendance frequency</label>
+                <input id="swf_events" type="text" value="1x monthly" />
+              </div>
+              <div class="field">
+                <label for="swf_writing">Writing cadence (Substack/Medium)</label>
+                <input id="swf_writing" type="text" value="2x monthly" />
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="swf_upwork">Upwork refresh frequency</label>
+                <input id="swf_upwork" type="text" value="Weekly refresh" />
+              </div>
+            </article>
 
-              <article class="settings-block">
-                <h3>11. Networking Sites Momentum Preferences</h3>
-                <div class="field">
-                  <label for="sm_weightVisibility">Visibility weight: <span id="sm_weightVisibilityVal">35</span></label>
-                  <input id="sm_weightVisibility" type="range" min="0" max="100" value="35" />
-                </div>
-                <div class="field">
-                  <label for="sm_weightConsistency">Consistency weight: <span id="sm_weightConsistencyVal">35</span></label>
-                  <input id="sm_weightConsistency" type="range" min="0" max="100" value="35" />
-                </div>
-                <div class="field">
-                  <label for="sm_weightExecution">Execution weight: <span id="sm_weightExecutionVal">30</span></label>
-                  <input id="sm_weightExecution" type="range" min="0" max="100" value="30" />
-                </div>
-                <label class="settings-check"><input type="checkbox" id="sm_includeEvents" checked /> Include event attendance</label>
-                <label class="settings-check"><input type="checkbox" id="sm_includePublishing" checked /> Include content publishing</label>
-                <label class="settings-check"><input type="checkbox" id="sm_includeCrm" checked /> Include CRM tracking</label>
-                <div class="row-actions" style="margin-top: 0.6rem">
-                  <button type="button" id="sitesSettingsSaveBtn">Save networking settings</button>
-                  <button type="button" id="sitesSettingsResetBtn">Reset networking defaults</button>
-                </div>
-              </article>
+            <article class="settings-block">
+              <h3>10. Networking Sites Persona</h3>
+              <div class="field" style="margin-bottom: 0">
+                <label for="sp_persona">Persona selection</label>
+                <select id="sp_persona">
+                  <option value="job-seeker">Job seeker</option>
+                  <option value="founder">Founder</option>
+                  <option value="freelancer">Freelancer</option>
+                  <option value="career-switcher">Career switcher</option>
+                  <option value="community-builder">Community builder</option>
+                  <option value="thought-leader">Thought leader</option>
+                </select>
+              </div>
+            </article>
 
-              <article class="settings-block settings-block--full">
-                <h3>System Health</h3>
-                <div class="system-health-grid">
-                  <p><strong>Total contacts:</strong> <span id="s_healthContacts">0</span></p>
-                  <p><strong>Storage usage:</strong> <span id="s_healthStorage">0 KB</span></p>
-                  <p><strong>Last backup:</strong> <span id="s_healthBackup">Never</span></p>
-                  <p><strong>Version:</strong> <span id="s_healthVersion">v1.4.0</span></p>
-                  <p><strong>Changelog:</strong> <span id="s_healthChangelog">CRM sidebar, analytics, timeline, and settings controls added.</span></p>
-                </div>
-                <div class="row-actions" style="margin-top: 0.5rem">
-                  <button type="button" class="primary" id="s_saveSettingsBtn">Save settings</button>
-                </div>
-              </article>
-            </div>
-          </section>
+            <article class="settings-block">
+              <h3>11. Networking Sites Momentum Preferences</h3>
+              <div class="field">
+                <label for="sm_weightVisibility">Visibility weight: <span id="sm_weightVisibilityVal">35</span></label>
+                <input id="sm_weightVisibility" type="range" min="0" max="100" value="35" />
+              </div>
+              <div class="field">
+                <label for="sm_weightConsistency">Consistency weight: <span
+                    id="sm_weightConsistencyVal">35</span></label>
+                <input id="sm_weightConsistency" type="range" min="0" max="100" value="35" />
+              </div>
+              <div class="field">
+                <label for="sm_weightExecution">Execution weight: <span id="sm_weightExecutionVal">30</span></label>
+                <input id="sm_weightExecution" type="range" min="0" max="100" value="30" />
+              </div>
+              <label class="settings-check"><input type="checkbox" id="sm_includeEvents" checked /> Include event
+                attendance</label>
+              <label class="settings-check"><input type="checkbox" id="sm_includePublishing" checked /> Include content
+                publishing</label>
+              <label class="settings-check"><input type="checkbox" id="sm_includeCrm" checked /> Include CRM
+                tracking</label>
+              <div class="row-actions" style="margin-top: 0.6rem">
+                <button type="button" id="sitesSettingsSaveBtn">Save networking settings</button>
+                <button type="button" id="sitesSettingsResetBtn">Reset networking defaults</button>
+              </div>
+            </article>
 
-          <section class="card" id="timelineSection">
-            <h2 class="sites-section-title">Relationship Timeline</h2>
-            <div id="timelineHost" class="crm-timeline">
-              <p class="hint" style="margin: 0">Add contacts to view timeline milestones.</p>
-            </div>
-          </section>
+            <article class="settings-block settings-block--full">
+              <h3>System Health</h3>
+              <div class="system-health-grid">
+                <p><strong>Total contacts:</strong> <span id="s_healthContacts">0</span></p>
+                <p><strong>Storage usage:</strong> <span id="s_healthStorage">0 KB</span></p>
+                <p><strong>Last backup:</strong> <span id="s_healthBackup">Never</span></p>
+                <p><strong>Version:</strong> <span id="s_healthVersion">v1.4.0</span></p>
+                <p><strong>Changelog:</strong> <span id="s_healthChangelog">CRM sidebar, analytics, timeline, and
+                    settings controls added.</span></p>
+              </div>
+              <div class="row-actions" style="margin-top: 0.5rem">
+                <button type="button" class="primary" id="s_saveSettingsBtn">Save settings</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="card" id="timelineSection">
+          <h2 class="sites-section-title">Relationship Timeline</h2>
+          <div id="timelineHost" class="crm-timeline">
+            <p class="hint" style="margin: 0">Add contacts to view timeline milestones.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="modal" id="contactModal" aria-labelledby="modalTitle">
+    <form method="dialog" id="contactForm">
+      <div class="modal__head">
+        <h2 id="modalTitle" style="margin: 0; font-size: 1.1rem">Contact</h2>
+        <button type="submit" value="cancel" formnovalidate>Close</button>
+      </div>
+      <div class="modal__body">
+        <input type="hidden" id="f_id" />
+
+        <div class="field">
+          <label for="f_name">Name</label>
+          <input id="f_name" type="text" required />
+        </div>
+        <div class="field">
+          <label for="f_company">Company</label>
+          <input id="f_company" type="text" />
+        </div>
+        <div class="field">
+          <label for="f_title">Title</label>
+          <input id="f_title" type="text" />
+        </div>
+        <div class="field crm-enrichment">
+          <div class="row-actions" style="margin-top: 0">
+            <button type="button" id="enrichContactBtn">Suggest enrichment</button>
+          </div>
+          <p class="hint" id="enrichmentHint" style="margin-bottom: 0">Suggest LinkedIn, title, and tags from the name,
+            company, and role.</p>
+        </div>
+        <div class="field">
+          <label for="f_email">Email</label>
+          <input id="f_email" type="email" inputmode="email" />
+        </div>
+        <div class="field">
+          <label for="f_phone">Phone</label>
+          <input id="f_phone" type="tel" />
+        </div>
+        <div class="field">
+          <label for="f_linkedin">LinkedIn URL</label>
+          <input id="f_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." />
+        </div>
+        <div class="field">
+          <label for="f_tags">Tags (comma-separated)</label>
+          <input id="f_tags" type="text" placeholder="mentor, fintech, referrals" />
+        </div>
+        <div class="field">
+          <label for="f_relationship">Relationship warmth</label>
+          <select id="f_relationship">
+            <option value="new">New</option>
+            <option value="cold">Cold</option>
+            <option value="warm" selected>Warm</option>
+            <option value="champion">Champion</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_status">Relationship / deal status</label>
+          <select id="f_status">
+            <option value="exploring" selected>Exploring</option>
+            <option value="active conversation">Active conversation</option>
+            <option value="active opportunity">Active opportunity</option>
+            <option value="referral in flight">Referral in flight</option>
+            <option value="stalled">Stalled</option>
+            <option value="dormant">Dormant</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_lastContacted">Last contacted</label>
+          <input id="f_lastContacted" type="date" />
+        </div>
+        <div class="field">
+          <label for="f_nextFollowUp">Next follow-up</label>
+          <input id="f_nextFollowUp" type="date" />
+        </div>
+        <div class="field">
+          <label for="f_goalsAlignment">Goals alignment (keywords)</label>
+          <textarea id="f_goalsAlignment"
+            placeholder="Why this person matters for your current goals (keywords help auto-prioritization)."></textarea>
+        </div>
+        <div class="field">
+          <label for="f_notes">Notes</label>
+          <textarea id="f_notes" placeholder="Context, preferences, family, projects, risks..."></textarea>
+        </div>
+        <div class="field">
+          <label for="f_lastOutcome">Last conversation outcome</label>
+          <textarea id="f_lastOutcome" placeholder="What happened last time? What is owed on either side?"></textarea>
         </div>
       </div>
-    </main>
+      <div class="modal__foot">
+        <button type="submit" value="cancel" formnovalidate>Cancel</button>
+        <button type="submit" class="primary" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
 
-    <dialog class="modal" id="contactModal" aria-labelledby="modalTitle">
-      <form method="dialog" id="contactForm">
-        <div class="modal__head">
-          <h2 id="modalTitle" style="margin: 0; font-size: 1.1rem">Contact</h2>
-          <button type="submit" value="cancel" formnovalidate>Close</button>
-        </div>
-        <div class="modal__body">
-          <input type="hidden" id="f_id" />
+  <div class="crm-overlay"></div>
+  <div class="crm-row-preview" id="crmRowPreview"></div>
 
-          <div class="field">
-            <label for="f_name">Name</label>
-            <input id="f_name" type="text" required />
-          </div>
-          <div class="field">
-            <label for="f_company">Company</label>
-            <input id="f_company" type="text" />
-          </div>
-          <div class="field">
-            <label for="f_title">Title</label>
-            <input id="f_title" type="text" />
-          </div>
-          <div class="field crm-enrichment">
-            <div class="row-actions" style="margin-top: 0">
-              <button type="button" id="enrichContactBtn">Suggest enrichment</button>
-            </div>
-            <p class="hint" id="enrichmentHint" style="margin-bottom: 0">Suggest LinkedIn, title, and tags from the name, company, and role.</p>
-          </div>
-          <div class="field">
-            <label for="f_email">Email</label>
-            <input id="f_email" type="email" inputmode="email" />
-          </div>
-          <div class="field">
-            <label for="f_phone">Phone</label>
-            <input id="f_phone" type="tel" />
-          </div>
-          <div class="field">
-            <label for="f_linkedin">LinkedIn URL</label>
-            <input id="f_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." />
-          </div>
-          <div class="field">
-            <label for="f_tags">Tags (comma-separated)</label>
-            <input id="f_tags" type="text" placeholder="mentor, fintech, referrals" />
-          </div>
-          <div class="field">
-            <label for="f_relationship">Relationship warmth</label>
-            <select id="f_relationship">
-              <option value="new">New</option>
-              <option value="cold">Cold</option>
-              <option value="warm" selected>Warm</option>
-              <option value="champion">Champion</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f_status">Relationship / deal status</label>
-            <select id="f_status">
-              <option value="exploring" selected>Exploring</option>
-              <option value="active conversation">Active conversation</option>
-              <option value="active opportunity">Active opportunity</option>
-              <option value="referral in flight">Referral in flight</option>
-              <option value="stalled">Stalled</option>
-              <option value="dormant">Dormant</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f_lastContacted">Last contacted</label>
-            <input id="f_lastContacted" type="date" />
-          </div>
-          <div class="field">
-            <label for="f_nextFollowUp">Next follow-up</label>
-            <input id="f_nextFollowUp" type="date" />
-          </div>
-          <div class="field">
-            <label for="f_goalsAlignment">Goals alignment (keywords)</label>
-            <textarea
-              id="f_goalsAlignment"
-              placeholder="Why this person matters for your current goals (keywords help auto-prioritization)."
-            ></textarea>
-          </div>
-          <div class="field">
-            <label for="f_notes">Notes</label>
-            <textarea id="f_notes" placeholder="Context, preferences, family, projects, risks..."></textarea>
-          </div>
-          <div class="field">
-            <label for="f_lastOutcome">Last conversation outcome</label>
-            <textarea id="f_lastOutcome" placeholder="What happened last time? What is owed on either side?"></textarea>
-          </div>
-        </div>
-        <div class="modal__foot">
-          <button type="submit" value="cancel" formnovalidate>Cancel</button>
-          <button type="submit" class="primary" value="save">Save</button>
-        </div>
-      </form>
-    </dialog>
 
-    <script type="module" src="./js/crm.js"></script>
-    <aside class="next-panel next-panel--crm" id="nextPanel" aria-labelledby="nextPanelTitle">
-      <p class="next-panel__eyebrow">Workflow guide</p>
-      <h2 id="nextPanelTitle">What's next?</h2>
-      <ul class="next-panel__list" id="nextPanelList">
-        <li>Add contacts to unlock daily outreach guidance.</li>
-      </ul>
-    </aside>
-  </body>
+  <script type="module" src="./js/crm.js"></script>
+  <aside class="next-panel next-panel--crm" id="nextPanel" aria-labelledby="nextPanelTitle">
+    <p class="next-panel__eyebrow">Workflow guide</p>
+    <h2 id="nextPanelTitle">What's next?</h2>
+    <ul class="next-panel__list" id="nextPanelList">
+      <li>Add contacts to unlock daily outreach guidance.</li>
+    </ul>
+  </aside>
+</body>
+
 </html>

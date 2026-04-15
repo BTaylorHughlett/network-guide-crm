@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
   color-scheme: light dark;
   --bg: #0f1412;
@@ -976,6 +978,25 @@ details.disclosure summary {
   align-items: center;
 }
 
+/* Increase all table column widths by ~33% */
+.crm-table th,
+.crm-table td {
+  width: calc(100% / 8 * 1.33);
+  /* Adjust based on your column count */
+  padding: 12px 16px;
+}
+
+/* Weighted vertical separators */
+.crm-table th,
+.crm-table td {
+  border-right: 2px solid #d0d0d0;
+}
+
+.crm-table th:last-child,
+.crm-table td:last-child {
+  border-right: none;
+}
+
 .crm-toolkit-bar {
   position: sticky;
   top: 0;
@@ -1113,6 +1134,141 @@ details.disclosure summary {
 .crm-sidebar__nav a.is-active {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+/* Floating row preview */
+.crm-row-preview {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  display: none;
+  color: var(--text);
+}
+
+.crm-row-preview.active {
+  display: block;
+}
+
+/* Dim background when preview is open */
+.crm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998;
+  display: none;
+}
+
+.crm-overlay.active {
+  display: block;
+}
+
+.crm-preview-field {
+  margin-bottom: 16px;
+}
+
+.crm-preview-field label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.crm-preview-field input,
+.crm-preview-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.crm-preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.crm-btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+}
+
+.crm-btn.save {
+  background: #0078ff;
+  color: white;
+}
+
+.crm-btn.cancel {
+  background: #e0e0e0;
+}
+
+.crm-overlay.active {
+  display: block;
+}
+
+:root {
+  /* NodeLogic Brand Palette */
+  --brand-node: #2a9d8f;
+  --brand-logic: #264653;
+  --status-overdue: #e76f51;
+  --status-momentum: #e9c46a;
+  --surface-card: #ffffff;
+  --text-main: #1d1d1f;
+
+  /* Typography from your HTML */
+  --font-body: 'DM Sans', sans-serif;
+  --font-heading: 'Exo 2', sans-serif;
+}
+
+/* The Layout Shell */
+.crm-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Mobile-First Adaptability */
+@media (max-width: 900px) {
+  .crm-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-sidebar {
+    display: none;
+    /* Or transform into a bottom-tab bar */
+  }
+}
+
+/* Progress Bars */
+.smart-progress__bar {
+  background: #eee;
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.smart-progress__bar span {
+  display: block;
+  height: 100%;
+  background: var(--brand-node);
+  transition: width 0.4s ease-in-out;
 }
 
 .action-icon {
@@ -1396,13 +1552,14 @@ table.data {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.88rem;
-  min-width: 1100px;
+  min-width: 1463px;
 }
 
 table.data th,
 table.data td {
-  padding: 0.55rem 0.65rem;
+  padding: 0.73rem 0.86rem;
   border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   vertical-align: top;
   text-align: left;
 }
@@ -2191,8 +2348,8 @@ body.page-sites .sites-main [id] {
 }
 
 /* =====================================================
-   SITES PAGE â€” VISUAL HIERARCHY UPGRADE
-   ===================================================== */
+  SITES PAGE - VISUAL HIERARCHY UPGRADE
+  ===================================================== */
 
 /* Section header layout */
 .sites-section-head {

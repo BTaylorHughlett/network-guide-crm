@@ -18,6 +18,7 @@ import {
 const tbody = document.getElementById("contactsBody");
 const emptyState = document.getElementById("emptyState");
 const table = document.getElementById("contactsTable");
+const tableHint = document.getElementById("tableHint");
 const modal = document.getElementById("contactModal");
 const form = document.getElementById("contactForm");
 const profilePill = document.getElementById("profilePill");
@@ -500,27 +501,27 @@ function priorityReason(contact, goalText) {
 
 function filterByLastContacted(list) {
   if (!dateFilter) return list;
-  
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  
+
   return list.filter((c) => {
     const lastDate = parseDate(c.lastContacted);
-    
+
     if (dateFilter === "never") {
       return !lastDate;
     }
-    
+
     if (!lastDate) return false;
-    
+
     const days = daysBetween(today, lastDate);
-    
+
     if (dateFilter === "7") return days <= 7 && days >= 0;
     if (dateFilter === "14") return days <= 14 && days >= 0;
     if (dateFilter === "30") return days <= 30 && days >= 0;
     if (dateFilter === "90") return days <= 90 && days >= 0;
     if (dateFilter === "90+") return days > 90;
-    
+
     return true;
   });
 }
@@ -731,6 +732,7 @@ function render() {
   if (!contacts.length) {
     emptyState.hidden = false;
     table.hidden = true;
+    tableHint.hidden = true;
     renderAnalytics([], []);
     renderSuggestions([], [], userGoalText());
     renderTimeline([]);
@@ -739,6 +741,7 @@ function render() {
 
   emptyState.hidden = true;
   table.hidden = false;
+  tableHint.hidden = false;
 
   const filtered = filterBySearch(filterByLastContacted(contacts));
   const rows = sortContacts(filtered);
@@ -915,8 +918,8 @@ function openModal(contact) {
     f.notes.placeholder = "Met at Tech Meetup. Interested in data roles.";
     f.nextFollowUp.placeholder = "In 7 days - send portfolio link";
     if (!f.nextFollowUp.value) {
-        const d = new Date();
-        d.setDate(d.getDate() + Number(settings.profile.defaultFollowUpDays || 7));
+      const d = new Date();
+      d.setDate(d.getDate() + Number(settings.profile.defaultFollowUpDays || 7));
       f.nextFollowUp.value = d.toISOString().slice(0, 10);
     }
   }
@@ -1718,3 +1721,347 @@ if (sessionStorage.getItem("ngc_open_settings") === "1") {
   sessionStorage.removeItem("ngc_open_settings");
   openSettingsPanel();
 }
+
+// Attach click listeners to all CRM table rows
+document.querySelectorAll('.crm-table tbody tr').forEach(row => {
+  row.addEventListener('click', () => {
+    const preview = document.getElementById('crmRowPreview');
+    const overlay = document.querySelector('.crm-overlay');
+
+    // Build a clean preview of the row
+    const cells = [...row.children].map((cell, i) => {
+      const header = document.querySelector(`.crm-table thead th:nth-child(${i + 1})`);
+      return `
+                <div style="margin-bottom: 12px;">
+                    <strong>${header.textContent}</strong><br>
+                    <span>${cell.textContent.trim()}</span>
+                </div>
+            `;
+    }).join('');
+
+    preview.innerHTML = cells;
+
+    preview.classList.add('active');
+    overlay.classList.add('active');
+  });
+});
+
+// Close preview when clicking overlay
+document.querySelector('.crm-overlay').addEventListener('click', () => {
+  document.getElementById('crmRowPreview').classList.remove('active');
+  document.querySelector('.crm-overlay').classList.remove('active');
+});
+
+// Close preview when pressing Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('crmRowPreview').classList.remove('active');
+    document.querySelector('.crm-overlay').classList.remove('active');
+  }
+});
+
+document.querySelectorAll('.crm-table tbody tr').forEach(row => {
+  row.addEventListener('click', () => {
+    const preview = document.getElementById('crmRowPreview');
+    const overlay = document.querySelector('.crm-overlay');
+
+    const cells = [...row.children];
+    const headers = [...document.querySelectorAll('.crm-table thead th')];
+
+    // Build editable form fields
+    const formFields = cells.map((cell, i) => {
+      const label = headers[i].textContent.trim();
+      const value = cell.textContent.trim();
+
+      return `
+                <div class="crm-preview-field">
+                    <label>${label}</label>
+                    <textarea data-col="${i}">${value}</textarea>
+                </div>
+            `;
+    }).join('');
+
+    preview.innerHTML = `
+            ${formFields}
+            <div class="crm-preview-actions">
+                <button class="crm-btn cancel">Cancel</button>
+                <button class="crm-btn save">Save</button>
+            </div>
+        `;
+
+    preview.classList.add('active');
+    overlay.classList.add('active');
+
+    // Cancel button
+    preview.querySelector('.cancel').onclick = () => {
+      preview.classList.remove('active');
+      overlay.classList.remove('active');
+    };
+
+    // Save button
+    preview.querySelector('.save').onclick = () => {
+      const inputs = preview.querySelectorAll('textarea');
+
+      inputs.forEach(input => {
+        const colIndex = input.dataset.col;
+        row.children[colIndex].textContent = input.value;
+      });
+
+      preview.classList.remove('active');
+      overlay.classList.remove('active');
+    };
+  });
+});
+
+// Close preview when clicking overlay
+document.querySelector('.crm-overlay').addEventListener('click', () => {
+  document.getElementById('crmRowPreview').classList.remove('active');
+  document.querySelector('.crm-overlay').classList.remove('active');
+});
+
+// crm.js - NodeLogic Core Logic
+
+const weights = {
+  timing: 0.5,
+  momentum: 0.3,
+  goalFit: 0.2
+};
+
+/**
+ * Calculates a priority score from 0-100
+ * @param {Object} contact - The contact data object
+ */
+function calculatePriority(contact) {
+  const lastDate = new Date(contact.lastContacted);
+  const today = new Date();
+
+  // 1. Timing Score: Days since last contact
+  const daysSince = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+  let timingScore = Math.max(0, 100 - (daysSince * 2));
+
+  // 2. Momentum Score: Based on "Warmth"
+  const warmthMap = { 'champion': 100, 'warm': 70, 'cold': 30, 'new': 50 };
+  const momentumScore = warmthMap[contact.relationship] || 0;
+
+  // 3. Final Weighted Calculation
+  const totalScore =
+    (timingScore * weights.timing) +
+    (momentumScore * weights.momentum);
+
+  return Math.round(totalScore);
+}
+
+// Example: Updating the Table UI
+function renderContacts(contacts) {
+  const tbody = document.getElementById('contactsBody');
+  tbody.innerHTML = contacts.map(c => {
+    const score = calculatePriority(c);
+    const statusClass = score > 75 ? 'crm-dot--green' : score > 40 ? 'crm-dot--yellow' : 'crm-dot--red';
+
+    return `
+      <tr>
+        <td><i class="crm-dot ${statusClass}"></i> ${score}%</td>
+        <td><strong>${c.name}</strong></td>
+        <td>${c.company}</td>
+        <td>${c.status}</td>
+        <td><button onclick="editContact('${c.id}')">Edit</button></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+/**
+ * Logic for the "Pick Priority Contact" button
+ */
+function generateDailyRecommendation(contacts, currentGoalText) {
+  if (!contacts || contacts.length === 0) return "Add contacts to get started.";
+
+  // 1. Calculate scores for everyone and find the best match
+  const scoredContacts = contacts.map(contact => {
+    // Check for keyword overlap between Goal and Contact Notes/GoalsAlignment
+    const goalKeywords = currentGoalText.toLowerCase().split(' ');
+    const contactContext = (contact.notes + " " + contact.goalsAlignment).toLowerCase();
+
+    let matchCount = 0;
+    goalKeywords.forEach(word => {
+      if (word.length > 3 && contactContext.includes(word)) matchCount++;
+    });
+
+    const baseScore = calculatePriority(contact);
+    const finalScore = baseScore + (matchCount * 10); // Boost score for goal alignment
+
+    return { ...contact, finalScore, matchCount };
+  });
+
+  // 2. Sort by highest score
+  scoredContacts.sort((a, b) => b.finalScore - a.finalScore);
+  const topPick = scoredContacts[0];
+
+  // 3. Generate the UI Output
+  const resultArea = document.getElementById('whoTodayResult');
+
+  resultArea.innerHTML = `
+    <div class="recommendation-card">
+      <p><strong>Priority Match:</strong> ${topPick.name}</p>
+      <p class="hint">Recommended because: ${topPick.matchCount > 0
+      ? `They align with your goal of "${currentGoalText}".`
+      : `They are becoming "Cold" and need a touchpoint.`}</p>
+      <div class="row-actions">
+        <button type="button" class="primary" onclick="openOutreach('${topPick.id}')">
+          Draft Message
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Event Listener for the button
+document.getElementById('whoTodayBtn').addEventListener('click', () => {
+  // In a real app, this would pull from your Planner state/localStorage
+  const activeGoal = "UI/UX Internship Milwaukee";
+  const allContacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+  generateDailyRecommendation(allContacts, activeGoal);
+});
+// Row preview on click
+tbody.addEventListener('click', (e) => {
+  const tr = e.target.closest('tr');
+  if (!tr || e.target.closest('.cell-actions')) return; // Don't trigger if clicking actions
+
+  const editBtn = tr.querySelector('[data-action="edit"]');
+  if (!editBtn) return;
+  const id = editBtn.dataset.id;
+  const contact = contacts.find(c => c.id === id);
+  if (!contact) return;
+
+  const preview = document.getElementById('crmRowPreview');
+  const overlay = document.querySelector('.crm-overlay');
+
+  const goal = userGoalText();
+  const band = priorityBand(contact.__score);
+  const reason = priorityReason(contact, goal);
+
+  const fields = [
+    { label: 'Priority', value: `${band.label} · ${contact.__score} - ${reason}`, editable: false },
+    { label: 'Name', value: contact.name, editable: true, type: 'text' },
+    { label: 'Company', value: contact.company, editable: true, type: 'text' },
+    { label: 'Title', value: contact.title, editable: true, type: 'text' },
+    { label: 'Relationship', value: contact.relationship, editable: true, type: 'select', options: ['new', 'cold', 'warm', 'champion'] },
+    { label: 'Status', value: contact.status, editable: true, type: 'select', options: ['exploring', 'active conversation', 'active opportunity', 'referral in flight', 'stalled', 'dormant'] },
+    { label: 'Last contacted', value: contact.lastContacted, editable: true, type: 'date' },
+    { label: 'Next follow-up', value: contact.nextFollowUp, editable: true, type: 'date' },
+    { label: 'Tags', value: contact.tags, editable: true, type: 'text' },
+    { label: 'Goals alignment', value: contact.goalsAlignment, editable: true, type: 'textarea' },
+    { label: 'Notes', value: contact.notes, editable: true, type: 'textarea' },
+    { label: 'Last outcome', value: contact.lastOutcome, editable: true, type: 'textarea' },
+    { label: 'Email', value: contact.email, editable: true, type: 'email' },
+    { label: 'Phone', value: contact.phone, editable: true, type: 'tel' },
+    { label: 'LinkedIn', value: contact.linkedin, editable: true, type: 'url' },
+  ];
+
+  const formHtml = `<table style="width: 100%; border-collapse: collapse;">
+    ${fields.map(f => {
+    if (!f.editable) {
+      return `
+          <tr>
+            <td style="padding: 0.5rem 0; font-weight: bold; vertical-align: top; width: 30%;">${esc(f.label)}</td>
+            <td style="padding: 0.5rem 0;">${esc(f.value)}</td>
+          </tr>
+        `;
+    }
+    let inputHtml;
+    if (f.type === 'select') {
+      inputHtml = `<select name="${esc(f.label)}" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-elev); color: var(--text);">
+          ${f.options.map(opt => `<option value="${esc(opt)}" ${opt === f.value ? 'selected' : ''}>${esc(opt)}</option>`).join('')}
+        </select>`;
+    } else if (f.type === 'textarea') {
+      inputHtml = `<textarea name="${esc(f.label)}" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-elev); color: var(--text); min-height: 60px;">${esc(f.value)}</textarea>`;
+    } else {
+      inputHtml = `<input type="${f.type}" name="${esc(f.label)}" value="${esc(f.value)}" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-elev); color: var(--text);" />`;
+    }
+    return `
+        <tr>
+          <td style="padding: 0.5rem 0; font-weight: bold; vertical-align: top; width: 30%;">${esc(f.label)}</td>
+          <td style="padding: 0.5rem 0;">${inputHtml}</td>
+        </tr>
+      `;
+  }).join('')}
+  </table>`;
+
+  preview.innerHTML = `
+    <form id="previewForm">
+      ${formHtml}
+      <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;">
+        <button type="button" id="previewCancel" style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-elev); color: var(--text);">Cancel</button>
+        <button type="submit" style="padding: 0.5rem 1rem; border: none; border-radius: 4px; background: var(--accent); color: white;">Save</button>
+      </div>
+    </form>
+  `;
+
+  preview.classList.add('active');
+  overlay.classList.add('active');
+
+  // Handle form submission
+  const form = preview.querySelector('#previewForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const updatedContact = { ...contact };
+    const keyMap = {
+      'Name': 'name',
+      'Company': 'company',
+      'Title': 'title',
+      'Relationship': 'relationship',
+      'Status': 'status',
+      'Last contacted': 'lastContacted',
+      'Next follow-up': 'nextFollowUp',
+      'Tags': 'tags',
+      'Goals alignment': 'goalsAlignment',
+      'Notes': 'notes',
+      'Last outcome': 'lastOutcome',
+      'Email': 'email',
+      'Phone': 'phone',
+      'LinkedIn': 'linkedin'
+    };
+    fields.forEach(f => {
+      if (f.editable) {
+        const key = keyMap[f.label];
+        if (key) {
+          let value = formData.get(f.label) || '';
+          if (f.type === 'date' && value === '') {
+            value = null;
+          }
+          updatedContact[key] = value;
+        }
+      }
+    });
+    // Update the contact
+    const index = contacts.findIndex(c => c.id === id);
+    if (index !== -1) {
+      contacts[index] = updatedContact;
+      saveContacts(contacts);
+      render();
+    }
+    // Close
+    preview.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+
+  // Handle cancel
+  preview.querySelector('#previewCancel').addEventListener('click', () => {
+    preview.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+});
+
+// Close preview
+document.querySelector('.crm-overlay').addEventListener('click', () => {
+  document.getElementById('crmRowPreview').classList.remove('active');
+  document.querySelector('.crm-overlay').classList.remove('active');
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.getElementById('crmRowPreview').classList.remove('active');
+    document.querySelector('.crm-overlay').classList.remove('active');
+  }
+});
